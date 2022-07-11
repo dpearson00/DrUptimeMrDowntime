@@ -1,4 +1,4 @@
-# [team name] Design Document
+# Dr Uptime and Mr Downtime Design Document
 
 ## Instructions
 

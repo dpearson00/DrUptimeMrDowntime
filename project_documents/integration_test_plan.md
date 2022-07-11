@@ -1,4 +1,4 @@
-# [team name] Integration Test Plan
+# Dr Uptime and Mr Downtime Integration Test Plan
 
 ## Instructions
 

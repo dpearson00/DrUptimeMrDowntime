@@ -1,0 +1,30 @@
+.
+├── ICON.png
+├── README.md
+├── backend                                         // all java classes, packages, structures, etc.. this functions as the main source of truth for the project.
+├── documents
+│   ├── accomplishments
+│   │   ├── danielc.md
+│   │   ├── tommyj.md
+│   │   └── tylerk.md
+│   ├── design_document.md
+│   ├── final_presentation_outline.pdf
+│   ├── integration_test_plan.md
+│   ├── phases.md
+│   ├── reflection.md
+│   ├── rubric.md
+│   ├── structure.txt
+│   └── team_charter.md
+├── frontend                                        // all frontend code. this functions as the secondary source of truth for the project.
+│   ├── main.js                                     // entry point; run via `npm test` or `node main.js`
+│   ├── package-lock.json                           // npm dependency management
+│   ├── package.json                                // npm dependency management
+│   ├── scripts
+│   │   ├── router.js                               // handles rate limiting and routing
+│   │   ├── routes                                  // the routes referenced by the router.js file
+│   │   │   └── home.js
+│   │   └── utils
+│   └── views                                       // web pages
+│       ├── home.ejs
+│       └── static
+└

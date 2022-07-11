@@ -7,23 +7,23 @@ Consider phase 3 as the MVP. Functionality exists after Phase 2, but it's not pr
 
 Phase 1 Capabilities
 ----
-1. Read services to monitor[^phase-1-input]
-2. Create scheduling function[^phase-1-schedule-func]
-3. Create and request to URL to get it's status on the scheduled interval.[^phase-1-req]
-4. Receive and process response.[^phase-1-res]
-5. Basic web UI[^phase-1-webui]
+1. **BACKEND** Read services to monitor[^phase-1-input]
+2. **BACKEND** Create scheduling function[^phase-1-schedule-func]
+3. **BACKEND** Create and request to URL to get it's status on the scheduled interval.[^phase-1-req]
+4. **BACKEND** Receive and process response.[^phase-1-res]
+5. **FRONTEND** Basic web UI[^phase-1-webui]
 
 Phase 2 Capabilities
 ----
-6. Read database to create history graphs[^phase-2-graphs]
-7. Handle responses better[^phase-2-res]
-8. Graphs implemented into the web UI[^phase-2-webui]
+6. **BACKEND** Read database to create history graphs[^phase-2-graphs]
+7. **BACKEND** Handle responses better[^phase-2-res]
+8. **FRONTEND** Graphs implemented into the web UI[^phase-2-webui]
 
 Phase 3 Capabilities
 ----
-9. Implement an API that applications can POST to with their token[^phase-3-api]
-10. Implement web interface for adding services and sysadmins.[^phase-3-webui]
-11. Send an SMS when an event occurs.[^phase-3-sms-ping]
+9. **MIDDLEWARE** Implement an API that applications can POST to with their token[^phase-3-api]
+10. **FRONTEND** Implement web interface for adding services and sysadmins.[^phase-3-webui]
+11. **BACKEND** Send an SMS when an event occurs.[^phase-3-sms-ping]
 
 INFO
 ----

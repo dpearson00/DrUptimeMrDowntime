@@ -8,6 +8,8 @@ const port = 8080;
 var colors = require('colors');
 const express = require("express");
 const app = express();
+const path = require('path');
+var session = require('express-session');
 // import in-project dependencies
 const initRoutes = require("./scripts/router");
 
@@ -19,14 +21,19 @@ if (port == undefined) {
     process.exit()
 }
 
+app.use(session({
+    resave: false,
+    saveUninitialized: false,
+    secret: 'superfuntest', // session secret, combined with session ID to compute hash
+  }));
+
 app.use(express.urlencoded({ extended: true }));
 // Create static route for home page, assets, etc.
-app.use(express.static('content/static'));
+app.use('/static', express.static(path.join(__dirname, 'views/static')));
 // Initialize routes.
 initRoutes(app);
 app.set('view engine', 'ejs');
 
 app.listen(port, () => {
-    console.log(`Webserver is running on port ${port}`);
-    console.log("DEBUG- The server is running @ http://localhost:" + port);
+    console.log(`Webserver is running @ http://localhost:${port}`);
 })

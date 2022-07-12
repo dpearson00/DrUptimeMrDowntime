@@ -17,7 +17,7 @@ level of detail to aim for.*
 
 ## 1. Problem Statement
 
-*Explain clearly what problem you are trying to solve.*
+Dr.Uptime & Mr.Downtime is a real-time server monitoring application. It allows system administrators to keep track of the status of their servers.  It is designed to monitor the client's application and will notify you of major issues via SMS/Email, provide list of logs on information on errors, and give the statistics on server uptime/downtime.
 
 
 ## 2. Top Questions to Resolve in Review

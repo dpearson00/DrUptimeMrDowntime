@@ -1,8 +1,7 @@
 global.__basedir = __dirname;
 global.__scriptsDir = __dirname + '/scripts';
-global.__javaDir = __dirname + '/java';
 
-const port = 8080;
+require('dotenv').config()
 
 // import modules
 var colors = require('colors');
@@ -13,11 +12,12 @@ var session = require('express-session');
 // import in-project dependencies
 const initRoutes = require("./scripts/router");
 
-// Exit if there is no configuration
-if (port == undefined) {
-    console.log("X ".brightRed.bold+"Port not found, likely because .env may not exist! Please run the command ".red+"mv .env.example .env && nano .env".brightRed.bgGray+" to create .env and edit it!".red);
-    // TODO : Add a configuration script
-    // console.log("X ".brightRed.bold+"Port not found, likely because .env may not exist! Please run with the ".red+"--configure".brightRed.bgGray+" flag to generate it!".red);
+// Check .env to see whether or not to use the mock API
+if (process.env.mockapi == "true") { global.__apiLink = `http://localhost:8081`; console.log("Using the mock API."); require('./mockapi.js')} else { global.__apiLink = process.env.prodApiLink; console.log("Using PROD API, currently set to " + process.env.prodApiLink)}
+
+// Exit if critical config variables are not set
+if (process.env.port == "" || process.env.port == undefined || process.env.prodApiLink == "" || process.env.prodApiLink == undefined) {
+    console.log("X ".brightRed.bold+"Critical elements missing from process! This is likely because .env may not exist! Please run the command ".red+"mv .env.example .env && nano .env".brightRed.bgGray+" to create .env and edit it!".red);
     process.exit()
 }
 
@@ -34,6 +34,6 @@ app.use('/static', express.static(path.join(__dirname, 'views/static')));
 initRoutes(app);
 app.set('view engine', 'ejs');
 
-app.listen(port, () => {
-    console.log(`Webserver is running @ http://localhost:${port}`);
+app.listen(process.env.port, () => {
+    console.log(`Webserver is running @ http://localhost:${process.env.port}`);
 })

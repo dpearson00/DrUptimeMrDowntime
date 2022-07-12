@@ -1,10 +1,6 @@
 const express = require("express");
 const app = express();
 
-console.log("Starting server and mock API...");
-
-require('./main.js')
-
 app.set('json spaces', 2);
 
 app.get('/apps/Tommy', function(req, res){

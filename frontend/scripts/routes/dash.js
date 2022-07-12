@@ -5,7 +5,7 @@ const { json } = require("express");
   */
 const dash = (req, res) => {
     // This is using the mock API which starts alongside the main server when running `node mockapi.js`
-    axios.get(`http://localhost:8081/apps/${req.session.user}`)
+    axios.get(`${__apiLink}/apps/${req.session.user}`)
         .then(function (response) {
         var name = JSON.parse(JSON.stringify(response.data[1]));
         var ids = JSON.parse(JSON.stringify(response.data[2]));

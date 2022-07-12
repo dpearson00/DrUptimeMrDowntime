@@ -3,12 +3,19 @@ const app = express();
 
 app.set('json spaces', 2);
 
-app.get('/users/Daniel', function(req, res){
-    res.json({"1": [{1: "website 0", 2: "no"}], "2": [{1: "abc", 2: "def"}]});
+app.get('users/auth', function(req, res) {
+    if (req.query.username == "Tommy" && req.query.password == "test") {res.json({"1": 1});}
+    else if (req.query.username == "Tyler" && req.query.password == "test") {res.json({"1": 1});}
+    else if (req.query.username == "Daniel" && req.query.password == "test") {res.json({"1": 1});}
+    else {res.json({"1": 0});}
 });
 
-app.get('/users/Tommy', function(req, res){
-    res.json({"1": [{1: "website 1", 2: "some sort of API", 3: "Just for example pretend this is important..."}], "2": [{1: "aaa", 2: "bbb", 3: "ccc"}]});
+app.get('/users/apps/Daniel', function(req, res){
+    res.json({"1": ["website 0", "no"], "2": ["abc", "def"]});
+});
+
+app.get('/users/apps/Tommy', function(req, res){
+    res.json({"1": ["website 1","some sort of API","Just for example pretend this is important..."], "2": ["aaa","bbb","ccc"]});
 });
 
 app.get('/apps/aaa', function(req, res){

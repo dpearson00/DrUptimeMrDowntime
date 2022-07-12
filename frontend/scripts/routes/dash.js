@@ -5,19 +5,20 @@ const { json } = require("express");
   */
 const dash = (req, res) => {
     // This is using the mock API which starts alongside the main server when configured to via .env
-    axios.get(`${__apiLink}/users/${req.session.user}`)
+    axios.get(`${__apiLink}/users/apps/${req.session.user}`)
         .then(function (response) {
         var name = JSON.parse(JSON.stringify(response.data[1]));
         var ids = JSON.parse(JSON.stringify(response.data[2]));
     
-        var count = Object.keys(name[0]).length;
+        var count = Object.keys(ids).length;
 
         const bundles = new Array();
-        // i < count + 1 is strange logic, but it's a workaround to get it to work.
-        for ( var i = 1; i < count + 1; i++ ) {
-                bundles.push( [ name[0][i], ids[0][i] ] );
+
+        for ( var i = 0; i < count; i++ ) {
+                bundles.push( [ name[i], ids[i] ] );
         }
 
+        console.log(bundles)
         res.render("dash.ejs", {
             welcome: `Welcome, `+ req.session.user + `!`,
             bundles: bundles,

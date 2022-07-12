@@ -13,6 +13,7 @@ var session = require('express-session');
   Auth route (POST from /login)
   */
   const auth = (req, res) => {
+    const tyler = "Tyler";
     const daniel = "Daniel";
     const user = "Tommy";
     const pass = "test";

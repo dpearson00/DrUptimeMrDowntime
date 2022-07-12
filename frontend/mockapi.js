@@ -7,8 +7,8 @@ require('./main.js')
 
 app.set('json spaces', 2);
 
-app.get('/apps/*', function(req, res){
-    res.json({"apps": [{"Website 1": "This website is a website and it's not cool and not an actual website, just test data.", "Another WEBSITE??": "This website is a website and it's not cool and not an actual website, just test data.", "Cool API": "again, it's not real...s just test data."}]});
+app.get('/apps/Tommy', function(req, res){
+    res.json({"1": [{1: "website 1", 2: "some sort of API", 3: "Just for example pretend this is important..."}], "2": [{1: "aaa", 2: "bbb", 3: "ccc"}]});
 });
 
 app.listen(8081, () => {

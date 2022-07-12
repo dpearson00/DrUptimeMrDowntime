@@ -13,8 +13,9 @@ var session = require('express-session');
   Auth route (POST from /login)
   */
   const auth = (req, res) => {
-    const user = "testadmin"
-    if (req.body.username == user && req.body.password == user) {
+    const user = "Tommy";
+    const pass = "test";
+    if (req.body.username == user && req.body.password == pass) {
     req.session.regenerate(function(){
         req.session.user = user;
         req.session.success = 'Successfully authenticated as ' + user

@@ -26,7 +26,17 @@
         <div align="center">
           <hr>
           <h3>Services you monitor are below!</h3>
-          <h4><%= applications %></h4>
+          <div class="button-container">
+            <% for (bundle of bundles) { %>
+              <a href="/<%= bundle[0].slice(0, -3) %>">
+                <div class="post">
+                  <a href="/view/<%= bundle[1] %>">
+                  <button class="button"><h3><%= bundle[0] %></h3><hr><h4>ID: <%= bundle[1] %></h4></button>
+                </a>
+                </div>
+              </a>
+            <% } %>
+          </div>
         </div>
         <div class="jumbotron"></div>
         <p class="text-center text-muted">
@@ -38,4 +48,37 @@
           <p align="right">
           </p>
     </body>
+    <style>
+      .button {
+        background-color: #333;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        width: 33%;
+        height: 350;
+        float: left;
+      } 
+      .titlebar {
+        overflow: hidden;
+        background-color: #333;
+      }
+      .titlebar a {
+        float: left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 24px;
+      }
+      
+      .button-container {
+          width: 100%;
+          overflow-y: auto;
+      }
+        </style>
   </html>

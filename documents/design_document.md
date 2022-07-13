@@ -25,9 +25,9 @@ Dr.Uptime & Mr.Downtime is a real-time server monitoring application. It allows 
 *List the most important questions you have about your design, or things that
 you are still debating internally that you might like help working through.*
 
-1.   
-2.   
-3.  
+1.   Swagger documentation
+2.   Generating graph
+3.   What data are we collecting
 
 ## 3. Use Cases
 
@@ -35,12 +35,15 @@ you are still debating internally that you might like help working through.*
 would like to do (and why). You may also include use cases for yourselves, or
 for the organization providing the product to customers.*
 
-U1. *As a [product] customer, I want to `<result>` when I `<action>`*
+U1. As a dumd customer, I want to be logged in and at my dashboard to my profile when I enter my credentials
 
-U2. *As a [product] customer, I want to view my grocery list when I log into the
-grocery list page*
+U2. As a dumd customer, I want to view my server information when I click on the tiled cards
     
-U3. ...
+U3. As a dumd customer, I want to view my account information when I click on access my account
+
+U4. As a dumd customer, I want to edit my account information when I click on access my account
+
+U5. As a dumd customer, I want to log out when I click the log out button
 
 ## 4. Project Scope
 
@@ -49,10 +52,14 @@ what questions to ask to make sure you are solving for what you say and stops
 discussions from getting sidetracked by aspects you do not intend to handle in
 your design.*
 
+The application is trying to collect relevant data and present this information efficiently. The relevant data in this case is the server health (uptime/downtime) which includes an abritrary amount of time of the server's health. 
+
 ### 4.1. In Scope
 
 *Which parts of the problem defined in Sections 1 and 2 will you solve with this
 design?*
+
+- Creating a plug-and-play B2B solution for server monitoring.
 
 ### 4.2. Out of Scope
 
@@ -61,6 +68,8 @@ you are not planning to solve? Do potential expansions or related problems occur
 to you that you want to explicitly say you are not worrying about now? Feel free
 to put anything here that you think your team can't accomplish in the unit, but
 would love to do with more time.*
+
+- Fixing a client's server issues
 
 # 5. Proposed Architecture Overview
 

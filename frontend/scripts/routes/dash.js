@@ -17,8 +17,7 @@ const dash = (req, res) => {
         for ( var i = 0; i < count; i++ ) {
                 bundles.push( [ name[i], ids[i] ] );
         }
-
-        console.log(bundles)
+        
         res.render("dash.ejs", {
             welcome: `Welcome, `+ req.session.user + `!`,
             bundles: bundles,

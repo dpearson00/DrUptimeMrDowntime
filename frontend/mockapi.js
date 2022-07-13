@@ -2,32 +2,33 @@ const express = require("express");
 const app = express();
 
 app.set('json spaces', 2);
+app.use(express.json());
 
-app.get('users/auth', function(req, res) {
-    if (req.query.username == "Tommy" && req.query.password == "test") {res.json({"1": 1});}
-    else if (req.query.username == "Tyler" && req.query.password == "test") {res.json({"1": 1});}
-    else if (req.query.username == "Daniel" && req.query.password == "test") {res.json({"1": 1});}
-    else {res.json({"1": 0});}
+app.post('/users/auth', function(req, res) {
+    if (req.body.username == "Tommy" && req.body.password == "test") {res.json({"1": "SUCCESS"});}
+    else if (req.body.username == "Tyler" && req.body.password == "test") {res.json({"1": "SUCCESS"});}
+    else if (req.body.username == "Daniel" && req.body.password == "test") {res.json({"1": "SUCCESS"});}
+    else {res.json({"1": "AUTH-FAILED"});}
 });
 
 app.get('/users/apps/Tyler', function(req, res){
-    res.json({"1": ["website 0", "no"], "2": ["ccc"]});
+    res.json({1: ["another website...", "The Best API"], 2: ["ccc", "bbb"]});
 });
 
 app.get('/users/apps/Daniel', function(req, res){
-    res.json({"1": ["website 0", "no"], "2": ["abc", "def"]});
+    res.json({1: ["The Zeroth Site", "The Danny API"], 2: ["abc", "def"]});
 });
 
 app.get('/users/apps/Tommy', function(req, res){
-    res.json({1: ["website 1","some sort of API","Just for example pretend this is important..."], "2": ["aaa","bbb"]});
+    res.json({1: ["website 1"], 2: ["aaa"]});
 });
 
 app.get('/apps/aaa', function(req, res){
-    res.json({1: "website 1", 2: "This website is pretty neat, but api 1 is cooler", 3: "Tommy"});
+    res.json({1: "website 1", 2: "This website is pretty neat, but the api is cooler...", 3: "Tommy"});
 });
 
 app.get('/apps/bbb', function(req, res){
-    res.json({1: "Number one API EVER", 2: "good apis are cool", 3: "Tommy"});
+    res.json({1: "The Best API", 2: "good apis are cool", 3: "Tyler"});
 });
 
 app.get('/apps/ccc', function(req, res){

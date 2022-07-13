@@ -6,27 +6,31 @@ var session = require('express-session');
   */
   const login = (req, res) => {
           res.render('login.ejs');
-        //   axios.get(`http://lambdathings/${req.params.id}`)
   };
 
   /*
   Auth route (POST from /login)
   */
   const auth = (req, res) => {
-    const tyler = "Tyler";
-    const daniel = "Daniel";
-    const user = "Tommy";
-    const pass = "test";
-    if (req.body.username == user && req.body.password == pass) {
-    req.session.regenerate(function(){
-        req.session.user = user;
-        req.session.success = 'Successfully authenticated as ' + user
-        res.redirect('/dash');
-      });
-    } else {
-      req.session.error = 'Authentication failed, please provide valid user details.';
-    res.render('info.ejs', {title: `Failure!`, desc: `Your credentials are invalid!`});
-    }
+    axios.post(`${__apiLink}/users/auth`, {
+      username: req.body.username,
+      password: req.body.password
+    })
+    .then(function (response) {
+      if (response.data[1] == "SUCCESS") {
+        req.session.regenerate(function(){
+            req.session.user = req.body.username;
+            req.session.success = 'Successfully authenticated as ' + req.body.username
+            res.redirect('/dash');
+          });
+        } else {
+          req.session.error = 'Authentication failed, please provide valid user details.';
+        res.render('info.ejs', {title: `Failure!`, desc: `Your credentials are invalid!`});
+        }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 };
 
  /*

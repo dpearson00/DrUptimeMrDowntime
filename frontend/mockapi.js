@@ -11,36 +11,20 @@ app.post('/users/auth', function(req, res) {
     else {res.json({"1": "AUTH-FAILED"});}
 });
 
-app.get('/users/apps/Tyler', function(req, res){
-    res.json({1: ["another website...", "The Best API"], 2: ["ccc", "bbb"]});
+app.get('/users/apps/:name', function(req, res){
+    if (req.params.name == "Tyler") {res.json({1: ["another website...", "The Best API"], 2: ["ccc", "bbb"]});}
+    else if (req.params.name == "Daniel") {res.json({1: ["The Zeroth Site", "The Danny API"], 2: ["abc", "def"]});}
+    else if (req.params.name == "Tommy") {res.json({1: ["website 1"], 2: ["aaa"]});}
+    else {res.json({"1": "UNKNOWN"});}
 });
 
-app.get('/users/apps/Daniel', function(req, res){
-    res.json({1: ["The Zeroth Site", "The Danny API"], 2: ["abc", "def"]});
-});
-
-app.get('/users/apps/Tommy', function(req, res){
-    res.json({1: ["website 1"], 2: ["aaa"]});
-});
-
-app.get('/apps/aaa', function(req, res){
-    res.json({1: "website 1", 2: "This website is pretty neat, but the api is cooler...", 3: "Tommy"});
-});
-
-app.get('/apps/bbb', function(req, res){
-    res.json({1: "The Best API", 2: "good apis are cool", 3: "Tyler"});
-});
-
-app.get('/apps/ccc', function(req, res){
-    res.json({1: "another website...", 2: "Just for example pretend this is important...", 3: "Tyler"});
-});
-
-app.get('/apps/abc', function(req, res){
-    res.json({1: "The Zeroth Site", 2: "this website brings us closer to greatness", 3: "Daniel"});
-});
-
-app.get('/apps/def', function(req, res){
-    res.json({1: "The Danny API", 2: "It's fun to test, trust me.", 3: "Daniel"});
+app.get('/apps/:id', function(req, res){
+    if (req.params.id == "aaa") {res.json({1: "website 1", 2: "This website is pretty neat, but the api is cooler...", 3: "Tommy"});}
+    else if (req.params.id == "bbb") {res.json({1: "The Best API", 2: "good apis are cool", 3: "Tyler"});}
+    else if (req.params.id == "ccc") {res.json({1: "another website...", 2: "This website is pretty neat, but the api is cooler...", 3: "Tyler"});}
+    else if (req.params.id == "abc") {res.json({1: "The Zeroth Site", 2: "good apis are cool", 3: "Daniel"});}
+    else if (req.params.id == "def") {res.json({1: "The Danny API", 2: "It's an S3 bucket interface that's fun to test!", 3: "Daniel"});}
+    else {res.json({"1": "UNKNOWN"});}
 });
 
 app.listen(8081, () => {

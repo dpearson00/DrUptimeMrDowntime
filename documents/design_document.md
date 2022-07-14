@@ -1,19 +1,6 @@
 # Dr Uptime and Mr Downtime Design Document
 
-## Instructions
-
-*Save a copy of this template for your team in the same folder that contains
-this template.*
-
-*Replace italicized text (including this text!) with details of the design you
-are proposing for your team project. (Your replacement text shouldn't be in
-italics)*
-
-*You should take a look at the example design document in the same folder as
-this template for more guidance on the types of information to capture, and the
-level of detail to aim for.*
-
-## *Project Title* Design
+## *DUMD Server Monitor* Design
 
 ## 1. Problem Statement
 
@@ -25,9 +12,9 @@ Dr.Uptime & Mr.Downtime is a real-time server monitoring application. It allows 
 *List the most important questions you have about your design, or things that
 you are still debating internally that you might like help working through.*
 
-1.   Swagger documentation
-2.   Generating graph
-3.   What data are we collecting
+1.   We are have some blockers with the Swagger documentation.
+2.   We are trying to decided what is the best method for displaying a graph with the history of the uptime/downtime of a clients server. We have talked about rendering a graph on the server and sending a .img to the frontend or sending the data and rendering the graph using js/html/css.
+3.   We aren't exactly sure what kind of data we want to collect and store.
 
 ## 3. Use Cases
 
@@ -70,6 +57,9 @@ to put anything here that you think your team can't accomplish in the unit, but
 would love to do with more time.*
 
 - Fixing a client's server issues
+- Multiple user's per account with different permissions
+- Different tiers of accounts
+- Dedicated mobile application
 
 # 5. Proposed Architecture Overview
 
@@ -84,6 +74,14 @@ reasonable. That is, why it represents a good data flow and a good separation of
 concerns. Where applicable, argue why this architecture satisfies the stated
 requirements.*
 
+This initial iteration will provide the minimum lovable product (MLP) including creating, retrieving, and updating server error logs as well as adding to and retrieving a saved list of logs.
+
+We will use API Gateway and Lambda to create six endpoints (CreateAccount, LoginUser, AddNewApp, DeleteApp, GetUserApps, and GetAppDetails) that will handle the creation, update, deletion and retrieval of user accounts and apps to be monitored.
+
+We will store there server status history in a table in DynamoDB. Server logs themselves will also be stored in DynamoDB. For simpler log list retrieval, we will store the list of logs in a given playlist directly in the server history table.
+
+DUMD Monitor Service will also provide a web interface for users to manage their monitored applications. A user's dashboard provides a list view of all of their applications.
+
 # 6. API
 
 ## 6.1. Public Models
@@ -92,7 +90,33 @@ requirements.*
 *`-Model`* package. These will be equivalent to the *`PlaylistModel`* and
 *`SongModel`* from the Unit 3 project.*
 
-## 6.2. *First Endpoint*
+// UserModel
+
+String userId;
+String name;
+String email;
+String hashedPassword;
+String phoneNumber;
+List<String> appIds;
+
+
+// ApplicatonModel
+
+String appId;
+String name;
+String description;
+String appUrl; // or IP address
+String userId;
+List<String> serverHistoryId
+
+// ServerHistoryModel
+
+String serverHistoryId;
+String appId;
+Map<String, String> errorLogs; //<Timestamp, ErrorStatus>
+
+
+## 6.2. Create Account Endpoint
 
 *Describe the behavior of the first endpoint you will build into your service
 API. This should include what data it requires, what data it returns, and how it
@@ -105,12 +129,45 @@ your team before building it!)*
 *(You should have a separate section for each of the endpoints you are expecting
 to build...)*
 
-## 6.3 *Second Endpoint*
+- Accepts POST requests to /users/create
+- Accepts data to create a new user with provided name and a given user ID. Returns 200 status and `{"1": "SUCCESS"}`.
+- Invalid create account request will return a 400 status and `{"1": "FAILED"}`
+
+## 6.3 Login User Endpoint
 
 *(repeat, but you can use shorthand here, indicating what is different, likely
 primarily the data in/out and error conditions. If the sequence diagram is
 nearly identical, you can say in a few words how it is the same/different from
 the first endpoint)*
+
+- Accepts a POST request to /users/auth
+- Accepts user's email and password and returns a 200 status and `{“1”: "SUCCESS”, “2”: “{userId}”}`.
+- An Invalid user request returns a 400 status and `{"1": "FAILED"}`
+
+## 6.4 Get Apps Endpoint
+
+- Accepts a `GET` request to `/users/apps/{userId}`
+- Accepts a user Id and returns the list of apps `{1: ["{site1}", "{site2}", "{etc}"], 2: [{id1}, {id2}, {etc}]}`.
+- An Invalid user request returns a 400 status and `{"1": "FAILED"}`
+
+## 6.5 Get App Details Endpoint
+
+- Accepts a `GET` request to `/apps/{appId}`
+- Accepts a app Id and returns the app details `{1: "{appName}", 2: "{appDescription}", 3: "{appOwner}"}`.
+- An Invalid user request returns a 400 status and `{"1": "FAILED"}`
+
+## 6.6 Add New App Endpoint
+
+- Accepts `POST` request to `/apps/create`
+- Accepts data to create a new app with app name, description, and a given app ID and user ID. Returns 200 status and `{"1": "SUCCESS"}`
+- An Invalid user request returns a 400 status and `{"1": "FAILED"}`
+
+## 6.7 Delete App Endpoint
+
+- Accepts `GET` request to `/apps/{appId}/delete/{userId}`
+- Accepts the user ID and app ID and returns 200 status and `{"1": "SUCCESS"}`
+- An Invalid user request returns a 400 status and `{"1": "FAILED"}`
+
 
 # 7. Tables
 
@@ -118,6 +175,30 @@ the first endpoint)*
 may be helpful to first think of what objects your service will need, then
 translate that to a table structure, like with the *`Playlist` POJO* versus the
 `playlists` table in the Unit 3 project.*
+
+# 7.1 `users`
+
+userId // partition key, string
+customerName // string
+email // string
+phoneNumber // string
+hashedPassword // string
+appIds // list
+
+# 7.2 `applications`
+
+appId // partition key, string
+appName // string
+description // string
+appUrl // string
+userId // string
+serverHistoryIds // list 
+
+# 7.3 `serverHistory`
+
+serverHistoryId // string
+appId // string
+errorsLogs // map
 
 # 8. Pages
 
@@ -128,3 +209,6 @@ pages. It should be clear what the interactions will be on the page, especially
 where customers enter and submit data. You may want to accompany the mockups
 with some description of behaviors of the page (e.g. “When customer submits the
 submit-dog-photo button, the customer is sent to the doggie detail page”)*
+
+![Homepage](/documents/assets/homepage.png)
+![Login](/documents/assets/login.png)

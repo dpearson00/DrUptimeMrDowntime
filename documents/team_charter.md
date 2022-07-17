@@ -102,15 +102,15 @@ becoming an software engineer?**
 
 * *Tommy*: Learn Java and get a career
 * *Daniel*: Self improvement
-* *Tyler*: To do what I'm told
+* *Tyler*: Self improvement and get a career
 
 **What each team member wants to achieve: e.g. improve analytical skills, learn
 project management skills, develop public speaking skills, speak up more, speak
 up less, etc.**
 
-* *Tommy*: ""
-* *Daniel*: ""
-* *Tyler*: ""
+* *Tommy*: design, build, test and deploy an enterprise application with +100K users within 24 hours (by myself) 
+* *Daniel*: improve communication skills, build better programming foundations, automate repetive tasks
+* *Tyler*: improve programming skills, learn more about software architecture
 
 ## Team Member Roles and Responsibilities
 
@@ -121,11 +121,11 @@ rotating or permanent roles as you go.*
 
 |**Role**               |**Responsibilities**                                                |**Primary person** |**Secondary person** |
 |---                    |---                                                                 |---                |---                  |
-|Liaison to Instructors | Main contact to instructor to give status updates                  |                   |                     |
+|Liaison to Instructors | Main contact to instructor to give status updates                  | Daniel            |                     |
 |Frontend               | Create/maintain front end and implement features                   | Tommy             | Tyler               |
-|Backend                | Create/maintain back end code and features                         |                   |                     |
-|AWS                    | Create/maintain AWS Lambda, DynamoDB and Cloudfront items          |                   |                     |
-|Docs & Unit Testing    |                                                                    |                   |                     |
+|Backend                | Create/maintain back end code and features                         | Tyler             | Daniel              |
+|AWS                    | Create/maintain AWS Lambda, DynamoDB and Cloudfront items          | Daniel            | Tommy               |
+|Docs & Unit Testing    |                                                                    |                   | Daniel              |
 
 ## Acknowledgement
 

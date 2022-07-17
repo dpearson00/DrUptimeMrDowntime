@@ -92,28 +92,28 @@ DUMD Monitor Service will also provide a web interface for users to manage their
 
 // UserModel
 
-String userId;
-String name;
-String email;
-String hashedPassword;
-String phoneNumber;
-List<String> appIds;
+String userId;  
+String name;  
+String email;  
+String hashedPassword;  
+String phoneNumber;  
+List<String> appIds;  
 
 
 // ApplicatonModel
 
-String appId;
-String name;
-String description;
-String appUrl; // or IP address
-String userId;
-List<String> serverHistoryId
+String appId;  
+String name;  
+String description;  
+String appUrl; // or IP address  
+String userId;  
+List<String> serverHistoryId  
 
 // ServerHistoryModel
 
-String serverHistoryId;
-String appId;
-Map<String, String> errorLogs; //<Timestamp, ErrorStatus>
+String serverHistoryId;  
+String appId;  
+Map<String, String> errorLogs; //<Timestamp, ErrorStatus>  
 
 
 ## 6.2. Create Account Endpoint
@@ -178,27 +178,27 @@ translate that to a table structure, like with the *`Playlist` POJO* versus the
 
 # 7.1 `users`
 
-userId // partition key, string
-customerName // string
-email // string
-phoneNumber // string
-hashedPassword // string
-appIds // list
+userId // partition key, string  
+customerName // string  
+email // string  
+phoneNumber // string  
+hashedPassword // string  
+appIds // list  
 
 # 7.2 `applications`
 
-appId // partition key, string
-appName // string
-description // string
-appUrl // string
-userId // string
-serverHistoryIds // list 
+appId // partition key, string  
+appName // string  
+description // string  
+appUrl // string  
+userId // string  
+serverHistoryIds // list  
 
 # 7.3 `serverHistory`
 
-serverHistoryId // string
-appId // string
-errorsLogs // map
+serverHistoryId // string  
+appId // string  
+errorsLogs // map  
 
 # 8. Pages
 

@@ -12,6 +12,9 @@ app.post('/users/auth', function(req, res) {
 });
 /*
 POST: /users/auth
+username: String
+password: String
+
 IF login successful:
 {"1": "SUCCESS"}
 ELSE:
@@ -28,7 +31,7 @@ app.get('/users/apps/:name', function(req, res){
 GET: /users/apps/{name}
 IF name is valid:
 {1: ["{site1}", "{site2}", "{etc}"], 2: [{id1}, {id2}, {etc}]}
-else:
+ELSE:
 {"1": "UNKNOWN"}
 */
 

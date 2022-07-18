@@ -121,11 +121,11 @@ rotating or permanent roles as you go.*
 
 |**Role**               |**Responsibilities**                                                |**Primary person** |**Secondary person** |
 |---                    |---                                                                 |---                |---                  |
-|Liaison to Instructors | Main contact to instructor to give status updates                  | Daniel            |                     |
+|Liaison to Instructors | Main contact to instructor to give status updates                  | Daniel            | Tyler               |
 |Frontend               | Create/maintain front end and implement features                   | Tommy             | Tyler               |
 |Backend                | Create/maintain back end code and features                         | Tyler             | Daniel              |
 |AWS                    | Create/maintain AWS Lambda, DynamoDB and Cloudfront items          | Daniel            | Tommy               |
-|Docs & Unit Testing    |                                                                    |                   | Daniel              |
+|Docs & Unit Testing    |                                                                    | Tommy             | Daniel              |
 
 ## Acknowledgement
 

@@ -7,7 +7,6 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
 
 import java.util.List;
 
-
 @DynamoDBTable(tableName = "users")
 public class User {
 

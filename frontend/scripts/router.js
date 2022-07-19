@@ -5,6 +5,7 @@ const homeRoute = require(`${__scriptsDir}/routes/home`);
 const viewRoute = require(`${__scriptsDir}/routes/view`);
 const loginRoute = require(`${__scriptsDir}/routes/login`);
 const dashRoute = require(`${__scriptsDir}/routes/dash`);
+const newUserRoute = require(`${__scriptsDir}/routes/newuser`);
 
 const updateApiLimit = rateLimit({
   windowMs: 1 * 60 * 1000,
@@ -50,6 +51,9 @@ let routes = (app) => {
   router.get("/login", redirectLoggedIn, getPageLimit, loginRoute.login);
   router.post("/auth", getPageLimit, loginRoute.auth);
   router.get("/logout", getPageLimit, loginRoute.logout);
+  // Create User
+  router.get("/newuser", redirectLoggedIn, getPageLimit, newUserRoute.newuser);
+  router.post("/createuser", getPageLimit, newUserRoute.postuser);
   app.use(router);
 };
 module.exports = routes;

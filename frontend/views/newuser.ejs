@@ -1,0 +1,84 @@
+
+<html lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=0.8" /> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link href="static/style.css" rel="stylesheet" type="text/css"/>
+    <head>
+        <meta charset="UTF-8">
+        <title>Dr & Mr Web Client</title>
+        <meta property="og:title" content="Dr. Uptime and Mr. Downtime">
+        <meta property="og:site_name" content="">
+        <meta property="og:url" content="">
+        <meta property="og:description" content="Monitor your application uptime!">
+        <meta property="og:type" content="article">
+        <meta property="og:image" content="">
+      </head>
+    <body>
+      <div class="titlebar">
+        <a href="/">
+          <i class="fa-solid fa-arrow-left-long"></i> Home </a>
+      </div>
+      <div class="jumbotron">
+        <p align="center">
+        </p>
+        <h1 align="center">Create Account</h1>
+        <div align="center">
+          <hr>
+          <h3>Please provide account details below!</h3>
+          <form method="post" action="/createuser">
+            <p>
+              <label for="username">Name:</label><br>
+              <input type="text" name="username" id="username">
+            </p>
+            <p>
+              <label for="password">Password:</label><br>
+              <input type="text" name="password" id="password">
+            </p>
+            <p>
+                <label for="email">Email:</label><br>
+                <input type="text" name="email" id="email">
+            </p>
+            <p>
+              <input class="blueButton" type="submit" value="Create Account">
+            </p>
+          </form>
+          <a href="/login"><button class="grayButton"><i class="fa-solid fa-arrow-left-long"></i> Back to Login</button></a>
+        </div>
+        <div class="jumbotron"></div>
+        <p class="text-center text-muted">
+            <small>This project was built for BloomTech's group challenge.</small>
+            <br>
+          <p class="text-center text-muted">
+            <small>The front end is licensed under AGPL-3.</small>
+            <br>
+          <p align="right">
+          </p>
+    </body>
+    <style>
+      .blueButton {
+          background-color: #008CBA;
+          border: none;
+          color: white;
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin: 4px 2px;
+          cursor: pointer;
+        }
+      .graybutton {
+        background-color: #333;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+      } 
+    </style>
+  </html>

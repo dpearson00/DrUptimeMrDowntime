@@ -6,7 +6,9 @@ frontend/node_modules/**
 # Gradle Files #
 ################
 .gradle
+*/.gradle
 .m2
+*/.m2
 
 # Build output directies
 /target

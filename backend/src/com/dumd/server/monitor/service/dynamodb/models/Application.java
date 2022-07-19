@@ -6,6 +6,9 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
 import java.util.List;
 
+/**
+ *  Represents a record in the applications table.
+ */
 @DynamoDBTable(tableName = "applications")
 public class Application {
     private String appId;

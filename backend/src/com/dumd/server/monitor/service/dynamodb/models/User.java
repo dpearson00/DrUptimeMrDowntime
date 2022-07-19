@@ -7,6 +7,9 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
 
 import java.util.List;
 
+/**
+ *  Represents a record in the users table.
+ */
 @DynamoDBTable(tableName = "users")
 public class User {
 

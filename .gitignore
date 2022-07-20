@@ -10,6 +10,11 @@ frontend/node_modules/**
 .m2
 */.m2
 
+
+# .idea files #
+##############
+*/.idea/workspace.xml
+
 # Build output directies
 /target
 */target

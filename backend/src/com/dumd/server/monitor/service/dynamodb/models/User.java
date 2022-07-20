@@ -3,10 +3,12 @@ package com.dumd.server.monitor.service.dynamodb.models;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
 
 import java.util.List;
 
+/**
+ *  Represents a record in the users table.
+ */
 @DynamoDBTable(tableName = "users")
 public class User {
 

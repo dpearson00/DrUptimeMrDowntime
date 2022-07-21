@@ -22,13 +22,13 @@
       <div class="jumbotron">
         <p align="center">
         </p>
-        <h1 align="center">Login</h1>
+        <h1 align="center">Create Account</h1>
         <div align="center">
           <hr>
-          <h3>Please provide your credentials!</h3>
-          <form method="post" action="/auth">
+          <h3>Please provide account details below!</h3>
+          <form method="post" action="/createuser">
             <p>
-              <label for="username">User:</label><br>
+              <label for="username">Name:</label><br>
               <input type="text" name="username" id="username">
             </p>
             <p>
@@ -36,10 +36,14 @@
               <input type="text" name="password" id="password">
             </p>
             <p>
-              <input class="blueButton" type="submit" value="Login">
+                <label for="email">Email:</label><br>
+                <input type="text" name="email" id="email">
+            </p>
+            <p>
+              <input class="blueButton" type="submit" value="Create Account">
             </p>
           </form>
-          <a href="/newuser"><button class="grayButton">Create Account</button></a>
+          <a href="/login"><button class="grayButton"><i class="fa-solid fa-arrow-left-long"></i> Back to Login</button></a>
         </div>
         <div class="jumbotron"></div>
         <p class="text-center text-muted">

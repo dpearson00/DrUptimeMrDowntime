@@ -2,6 +2,8 @@ package com.dumd.server.monitor.service.activity;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
+import com.dumd.server.monitor.service.dynamodb.daos.ApplicationDao;
+import com.dumd.server.monitor.service.dynamodb.daos.UserDao;
 
 import javax.inject.Inject;
 
@@ -29,7 +31,7 @@ public class LoginUserActivity implements RequestHandler<LoginUserRequest, Login
     /**
      *  This method handles an incoming request by logging in a user.
      *
-     *  if the request has unknown credentials, a InvalidUserException will be thrown.
+     *  if the request has unknown credentials, a UserNotFoundException will be thrown.
      *
      * @param loginUserRequest request object containing the users email and password.
      * @param context

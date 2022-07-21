@@ -1,84 +1,105 @@
-
 <html lang="en">
-    <meta name="viewport" content="width=device-width, initial-scale=0.8" /> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <link href="static/style.css" rel="stylesheet" type="text/css"/>
-    <head>
-        <meta charset="UTF-8">
-        <title>Dr & Mr Web Client</title>
-        <meta property="og:title" content="Dr. Uptime and Mr. Downtime">
-        <meta property="og:site_name" content="">
-        <meta property="og:url" content="">
-        <meta property="og:description" content="Monitor your application uptime!">
-        <meta property="og:type" content="article">
-        <meta property="og:image" content="">
-      </head>
-    <body>
-      <div class="titlebar">
-        <a href="/logout">
-          <i class="fa-solid fa-arrow-left-long"></i> Logout </a>
-      </div>
-      <div class="jumbotron">
-        <p align="center">
-        </p>
-        <h1 align="center"><%= welcome %></h1>
-        <div align="center">
-          <hr>
-          <h3>Services you monitor are below!</h3>
-          <div class="button-container">
-            <% for (bundle of bundles) { %>
-              <a href="/<%= bundle[0].slice(0, -3) %>">
-                <div class="post">
-                  <a href="/view/<%= bundle[1] %>">
-                  <button class="button"><h3><%= bundle[0] %></h3><hr><h4>ID: <%= bundle[1] %></h4></button>
-                </a>
-                </div>
-              </a>
-            <% } %>
+  <meta name="viewport" content="width=device-width, initial-scale=0.8" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+  />
+  <link href="static/style.css" rel="stylesheet" type="text/css" />
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dr & Mr Web Client</title>
+    <meta property="og:title" content="Dr. Uptime and Mr. Downtime" />
+    <meta property="og:site_name" content="" />
+    <meta property="og:url" content="" />
+    <meta
+      property="og:description"
+      content="Monitor your application uptime!"
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="" />
+  </head>
+  <body>
+    <div class="titlebar">
+      <a href="/logout">
+        <i class="fa-solid fa-arrow-left-long"></i>&nbsp;&nbsp;Logout&nbsp;</a
+      >
+      <a href="/dash/newapp">
+        <i class="fa-solid fa-rocket"></i>&nbsp;&nbsp;Add Application&nbsp;</a
+      >
+      <a href="/dash/edituser">
+        <i class="fa-solid fa-user-tag"></i>&nbsp;&nbsp;Edit User&nbsp;</a
+      >
+    </div>
+    <div class="jumbotron">
+      <p align="center"></p>
+      <h1 align="center"><%= welcome %></h1>
+      <div align="center"></div>
+      <hr />
+      <h3>Services you monitor are below!</h3>
+      <div class="button-container">
+        <% for (bundle of bundles) { %>
+        <a href="/<%= bundle[0].slice(0, -3) %>">
+          <div class="post">
+            <a href="/dash/view/<%= bundle[1] %>">
+              <button class="button">
+                <h3><%= bundle[0] %></h3>
+                <hr />
+                <h4>ID: <%= bundle[1] %></h4>
+              </button>
+            </a>
           </div>
-        </div>
-        <div class="jumbotron"></div>
-        <p class="text-center text-muted">
-            <small>This project was built for BloomTech's group challenge.</small>
-            <br>
-          <p class="text-center text-muted">
-            <small>The front end is licensed under AGPL-3.</small>
-            <br>
-          <p align="right">
-          </p>
-    </body>
-    <style>
-      .button {
-        background-color: #333;
-        border: none;
-        color: white;
-        padding: 15px 32px;
-        text-align: center;
-        text-decoration: none;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        width: 33%;
-        height: 350;
-        float: left;
-      } 
-      .titlebar {
-        overflow: hidden;
-        background-color: #333;
-      }
-      .titlebar a {
-        float: left;
-        color: #f2f2f2;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-        font-size: 24px;
-      }
-      
-      .button-container {
-          width: 100%;
-          overflow-y: auto;
-      }
-        </style>
-  </html>
+        </a>
+        <% } %>
+      </div>
+    </div>
+    <div class="jumbotron"></div>
+    <p class="text-center text-muted">
+      <small>This project was built for BloomTech's group challenge.</small>
+      <br />
+    </p>
+
+    <p class="text-center text-muted">
+      <small>The front end is licensed under AGPL-3.</small>
+      <br />
+    </p>
+
+    <p align="right"></p>
+  </body>
+  <style>
+    .button {
+      background-color: #333;
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      width: 33%;
+      height: 350;
+      float: left;
+    }
+    .titlebar {
+      overflow: hidden;
+      background-color: #333;
+    }
+    .titlebar a {
+      float: left;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 24px;
+    }
+
+    .button-container {
+      width: 100%;
+      overflow-y: auto;
+    }
+  </style>
+</html>

@@ -14,15 +14,18 @@ const login = (req, res) => {
 const auth = (req, res) => {
   axios
     .post(`${__apiLink}/users/auth`, {
-      username: req.body.username,
+      email: req.body.email,
       password: req.body.password,
     })
     .then(function (response) {
       if (response.data[1] == "SUCCESS") {
         req.session.regenerate(function () {
-          req.session.user = req.body.username;
+
+          // TODO: user should use token and name should be the name of the person they are logged in as!
+          req.session.userId = req.body.email;
+          req.session.name = req.body.email;
           req.session.success =
-            "Successfully authenticated as " + req.body.username;
+            "Successfully authenticated as " + req.session.name;
           res.redirect("/dash");
         });
       } else {

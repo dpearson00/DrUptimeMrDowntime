@@ -5,9 +5,9 @@ const { default: axios } = require("axios");
 */
 const view = (req, res) => {
   axios
-    .get(`${__apiLink}/apps/${req.params.id}`)
+    .get(`${__apiLink}/apps/${req.session.userId}/view/${req.params.id}`)
     .then(function (response) {
-      if (req.session.user == response.data[3]) {
+      if (res.statusCode === 200) {
         res.render("view.ejs", {
           name: response.data[1],
           desc: response.data[2],

@@ -3,25 +3,24 @@ const { default: axios } = require("axios");
 /*
   View newuser route
 */
-const newuser = (req, res) => {
-  res.render("newuser.ejs");
+const newapp = (req, res) => {
+  res.render("newapp.ejs", {name: req.session.name});
 };
 
 /*
-  POST from /postnewuser
+  POST from /newapp
 */
-const postnewuser = (req, res) => {
+const postnewapp = (req, res) => {
   axios
-    .post(`${__apiLink}/users/create`, {
+    .post(`${__apiLink}/apps/${req.session.userId}/create`, {
       name: req.body.name,
-      password: req.body.password,
-      email: req.body.email,
+      description: req.body.description,
+      url: req.body.url,
     })
     .then(function (response) {
       if (response.data[1] == "SUCCESS") {
         req.session.regenerate(function () {
-          // TODO: populate with userId
-          req.session.userId = req.body.username;
+          req.session.id = req.body.username;
           req.session.success =
             "Successfully created and logged in as " + req.session.name;
           res.redirect("/dash");
@@ -40,4 +39,4 @@ const postnewuser = (req, res) => {
     });
 };
 
-module.exports = { newuser, postnewuser };
+module.exports = { newapp, postnewapp };

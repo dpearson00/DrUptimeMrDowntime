@@ -6,7 +6,7 @@ const { json } = require("express");
 const dash = (req, res) => {
   // This is using the mock API which starts alongside the main server when configured to via .env
   axios
-    .get(`${__apiLink}/users/apps/${req.session.user}`)
+    .get(`${__apiLink}/users/${req.session.userId}/apps`)
     .then(function (response) {
       var name = JSON.parse(JSON.stringify(response.data[1]));
       var ids = JSON.parse(JSON.stringify(response.data[2]));
@@ -20,7 +20,7 @@ const dash = (req, res) => {
       }
 
       res.render("dash.ejs", {
-        welcome: `Welcome, ` + req.session.user + `!`,
+        welcome: `Welcome, ` + req.session.name + `!`,
         bundles: bundles,
       });
     })

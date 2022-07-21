@@ -5,11 +5,11 @@ app.set("json spaces", 2);
 app.use(express.json());
 
 app.post("/users/auth", function (req, res) {
-  if (req.body.username == "Tommy" && req.body.password == "test") {
+  if (req.body.email == "Tommy" && req.body.password == "test") {
     res.json({ 1: "SUCCESS" });
-  } else if (req.body.username == "Tyler" && req.body.password == "test") {
+  } else if (req.body.email == "Tyler" && req.body.password == "test") {
     res.json({ 1: "SUCCESS" });
-  } else if (req.body.username == "Daniel" && req.body.password == "test") {
+  } else if (req.body.email == "Daniel" && req.body.password == "test") {
     res.json({ 1: "SUCCESS" });
   } else {
     res.json({ 1: "AUTH-FAILED" });
@@ -26,7 +26,7 @@ ELSE:
 {"1": "AUTH-FAILED"}
 */
 
-app.get("/users/apps/:name", function (req, res) {
+app.get("/users/:name/apps", function (req, res) {
   if (req.params.name == "Tyler") {
     res.json({ 1: ["another website...", "The Best API"], 2: ["ccc", "bbb"] });
   } else if (req.params.name == "Daniel") {
@@ -45,7 +45,7 @@ ELSE:
 {"1": "UNKNOWN"}
 */
 
-app.get("/apps/:id", function (req, res) {
+app.get("/apps/:user/view/:id", function (req, res) {
   if (req.params.id == "aaa") {
     res.json({
       1: "website 1",

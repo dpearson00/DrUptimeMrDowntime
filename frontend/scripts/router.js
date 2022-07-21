@@ -6,6 +6,7 @@ const viewRoute = require(`${__scriptsDir}/routes/view`);
 const loginRoute = require(`${__scriptsDir}/routes/login`);
 const dashRoute = require(`${__scriptsDir}/routes/dash`);
 const newUserRoute = require(`${__scriptsDir}/routes/newuser`);
+const newAppRoute = require(`${__scriptsDir}/routes/newapp`);
 
 const updateApiLimit = rateLimit({
   windowMs: 1 * 60 * 1000,
@@ -24,7 +25,7 @@ const getPageLimit = rateLimit({
 });
 
 function restrictedContent(req, res, next) {
-  if (req.session.user) {
+  if (req.session.userId) {
     next();
   } else {
     req.session.error = "Access denied!";
@@ -33,7 +34,7 @@ function restrictedContent(req, res, next) {
 }
 
 function redirectLoggedIn(req, res, next) {
-  if (req.session.user) {
+  if (req.session.userId) {
     res.redirect("/dash");
   } else {
     next();
@@ -41,19 +42,26 @@ function redirectLoggedIn(req, res, next) {
 }
 
 let routes = (app) => {
-  // Home
+  // HOMEPAGE
   router.get("/", redirectLoggedIn, getPageLimit, homeRoute.home);
-  // Dashboards
-  router.get("/dash", restrictedContent, dashRoute.dash);
-  // Get ID for the graphs
-  router.get("/view/:id", restrictedContent, getPageLimit, viewRoute.view);
-  // Login
+
+  // USER HANDLING
+  // User Sessions
   router.get("/login", redirectLoggedIn, getPageLimit, loginRoute.login);
   router.post("/auth", getPageLimit, loginRoute.auth);
-  router.get("/logout", getPageLimit, loginRoute.logout);
+  router.get("/logout", getPageLimit, loginRoute.logout); // Logout
   // Create User
   router.get("/newuser", redirectLoggedIn, getPageLimit, newUserRoute.newuser);
-  router.post("/createuser", getPageLimit, newUserRoute.postuser);
+  router.post("/postnewuser", getPageLimit, newUserRoute.postnewuser);
+
+  // DASHBOARD
+  // Logged in user dashboard
+  router.get("/dash", restrictedContent, dashRoute.dash);
+  // Get ID for the app details page
+  router.get("/dash/view/:id", restrictedContent, getPageLimit, viewRoute.view);
+  // Create App
+  router.get("/dash/newapp", restrictedContent, getPageLimit, newAppRoute.newapp);
+  router.post("/postnewapp", getPageLimit, newAppRoute.postnewapp);
   app.use(router);
 };
 module.exports = routes;

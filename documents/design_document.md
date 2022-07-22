@@ -144,7 +144,7 @@ the first endpoint)*
 - Accepts user's email and password and returns a 200 status and `{“1”: "SUCCESS”, “2”: “{name}”, "3": "{userId}"}`.
 - An Invalid user request returns a 400 status and `{"1": "FAILED"}`
 
-## 6.4 Get Apps Endpoint
+## 6.4 Get User Apps Endpoint
 
 - Accepts a `GET` request to `/users/{userId}/apps`
 - Accepts a userId and returns the list of apps `{1: ["{site1}", "{site2}", "{etc}"], 2: [{id1}, {id2}, {etc}]}`.

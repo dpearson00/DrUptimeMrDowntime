@@ -13,7 +13,8 @@ frontend/node_modules/**
 
 # .idea files #
 ##############
-*/.idea/workspace.xml
+**/.idea/workspace.xml
+**/.idea/tasks.xml
 
 # Build output directies
 /target

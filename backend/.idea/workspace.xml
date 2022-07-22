@@ -5,63 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="44c15bcb-2049-4f58-9c7c-a4e617a363e8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/activity/AddNewAppActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/activity/CreateAccountActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/activity/DeleteAppActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/activity/GetAppDetailsActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/activity/GetUserAppsActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/activity/LoginUserActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/dependency/DaoModule.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/dependency/ServiceComponent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/dynamodb/daos/ApplicationDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/dynamodb/daos/ServerHistoryDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/dynamodb/daos/UserDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/dynamodb/models/ServerHistory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/exceptions/ApplicationNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/exceptions/ServerHistoryNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/exceptions/UserNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/models/requests/AddNewAppRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/models/requests/CreateAccountRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/models/requests/DeleteAppRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/models/requests/GetAppDetailsRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/models/requests/GetUserAppsRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/models/requests/LoginUserRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/utils/DynamoDbClientProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/scripts/routes/newapp.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/scripts/routes/newuser.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/views/newapp.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/views/newuser.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/models/results/AddNewAppResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/models/results/CreateAccountResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/models/results/DeleteAppResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/models/results/GetAppDetailsResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/models/results/GetUserAppsResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/models/results/LoginUserResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/models/utils/Status.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.1/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.1/dependencies-accessors/gc.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.1/fileChanges/last-build.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.1/gc.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/vcs-1/gc.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/main/App.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/dynamodb/models/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/dynamodb/models/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/dynamodb/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/dynamodb/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../documents/design_document.md" beforeDir="false" afterPath="$PROJECT_DIR$/../documents/design_document.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/mockapi.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/mockapi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/scripts/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/scripts/router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/scripts/routes/dash.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/scripts/routes/dash.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/scripts/routes/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/scripts/routes/home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/scripts/routes/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/scripts/routes/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/scripts/routes/view.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/scripts/routes/view.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/scripts/setupParams.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/scripts/setupParams.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/views/dash.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/views/dash.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/views/login.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/views/login.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/activity/AddNewAppActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/activity/AddNewAppActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/activity/CreateAccountActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/activity/CreateAccountActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/activity/DeleteAppActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/activity/DeleteAppActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/activity/GetAppDetailsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/activity/GetAppDetailsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/activity/GetUserAppsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/activity/GetUserAppsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/activity/LoginUserActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/activity/LoginUserActivity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -5,6 +5,8 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.dumd.server.monitor.service.dynamodb.daos.ApplicationDao;
 import com.dumd.server.monitor.service.dynamodb.daos.UserDao;
 import com.dumd.server.monitor.service.models.requests.DeleteAppRequest;
+import com.dumd.server.monitor.service.models.results.DeleteAppResult;
+import com.dumd.server.monitor.service.models.UserModel;
 
 import javax.inject.Inject;
 

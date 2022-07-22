@@ -3,7 +3,7 @@ package com.dumd.server.monitor.service.activity;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.dumd.server.monitor.service.dynamodb.daos.UserDao;
-import com.dumd.server.monitor.service.models.requests.LoginUserRequest;
+import com.dumd.server.monitor.service.models.requests.CreateAccountRequest;
 import com.dumd.server.monitor.service.models.results.CreateAccountResult;
 import com.dumd.server.monitor.service.models.UserModel;
 
@@ -14,7 +14,7 @@ import javax.inject.Inject;
  *
  *  This API allows a customer to create an account.
  */
-public class CreateAccountActivity implements RequestHandler<LoginUserRequest, CreateAccountResult> {
+public class CreateAccountActivity implements RequestHandler<CreateAccountRequest, CreateAccountResult> {
     private final UserDao userDao;
 
     /**
@@ -37,7 +37,7 @@ public class CreateAccountActivity implements RequestHandler<LoginUserRequest, C
      * @return createAccountResult result object containing the API defined {@link UserModel}
      */
     @Override
-    public CreateAccountResult handleRequest(final LoginUserRequest createAccountRequest, Context context) {
+    public CreateAccountResult handleRequest(final CreateAccountRequest createAccountRequest, Context context) {
         // TODO: validate data and store it in the users table. Then return a result.
 
         // Dummy return statement

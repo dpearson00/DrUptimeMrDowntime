@@ -5,10 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="44c15bcb-2049-4f58-9c7c-a4e617a363e8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/models/ApplicationModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/models/ServerHistoryModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/models/UserModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

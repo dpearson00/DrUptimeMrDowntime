@@ -115,9 +115,6 @@ String serverHistoryId;
 String appId;  
 Map<String, String> errorLogs; //<Timestamp, ErrorStatus>  
 
-
-## 6.2. Create Account Endpoint
-
 *Describe the behavior of the first endpoint you will build into your service
 API. This should include what data it requires, what data it returns, and how it
 will handle any known failure cases. You should also include a sequence diagram
@@ -129,45 +126,48 @@ your team before building it!)*
 *(You should have a separate section for each of the endpoints you are expecting
 to build...)*
 
-- Accepts POST requests to /users/create
-- Accepts data to create a new user with provided name and a given user ID. Returns 200 status and `{"1": "SUCCESS"}`.
-- Invalid create account request will return a 400 status and `{"1": "FAILED"}`
-
-## 6.3 Login User Endpoint
-
 *(repeat, but you can use shorthand here, indicating what is different, likely
 primarily the data in/out and error conditions. If the sequence diagram is
 nearly identical, you can say in a few words how it is the same/different from
 the first endpoint)*
 
-- Accepts a POST request to /users/auth
-- Accepts user's email and password and returns a 200 status and `{“1”: "SUCCESS”, “2”: “{userId}”}`.
+## 6.2. Create Account Endpoint
+
+- Accepts `POST` requests to `/users/create`
+- Accepts data to create a new user with provided name, email, and password. Returns 200 status and `{"1": "SUCCESS"}`.
+- A userId is generated and stored in the users table
+- Invalid create account request will return a 400 status and `{"1": "FAILED"}`
+
+## 6.3 Login User Endpoint
+
+- Accepts a `POST` request to `/users/auth`
+- Accepts user's email and password and returns a 200 status and `{“1”: "SUCCESS”, “2”: “{name}”, "3": "{userId}"}`.
 - An Invalid user request returns a 400 status and `{"1": "FAILED"}`
 
-## 6.4 Get Apps Endpoint
+## 6.4 Get User Apps Endpoint
 
-- Accepts a `GET` request to `/users/apps/{userId}`
-- Accepts a user Id and returns the list of apps `{1: ["{site1}", "{site2}", "{etc}"], 2: [{id1}, {id2}, {etc}]}`.
+- Accepts a `GET` request to `/users/{userId}/apps`
+- Accepts a userId and returns the list of apps `{1: ["{site1}", "{site2}", "{etc}"], 2: [{id1}, {id2}, {etc}]}`.
 - An Invalid user request returns a 400 status and `{"1": "FAILED"}`
 
 ## 6.5 Get App Details Endpoint
 
-- Accepts a `GET` request to `/apps/{appId}`
-- Accepts a app Id and returns the app details `{1: "{appName}", 2: "{appDescription}", 3: "{appOwner}"}`.
+- Accepts a `GET` request to `/apps/{userId}/view/{appId}`
+- Accepts a userId and appId and returns the app details `{1: "{appName}", 2: "{appDescription}", 3: "{appOwner}"}`.
 - An Invalid user request returns a 400 status and `{"1": "FAILED"}`
 
 ## 6.6 Add New App Endpoint
 
-- Accepts `POST` request to `/apps/create`
-- Accepts data to create a new app with app name, description, and a given app ID and user ID. Returns 200 status and `{"1": "SUCCESS"}`
+- Accepts `POST` request to `/apps/{userId}/create`
+- Accepts data to create a new app with app name, description, userId, url. Returns 200 status and `{"1": "SUCCESS"}`
+- An appId will be generated and stored in applications table
 - An Invalid user request returns a 400 status and `{"1": "FAILED"}`
 
 ## 6.7 Delete App Endpoint
 
-- Accepts `GET` request to `/apps/{appId}/delete/{userId}`
-- Accepts the user ID and app ID and returns 200 status and `{"1": "SUCCESS"}`
+- Accepts `GET` request to `/apps/{userId}/delete/{appId}`
+- Accepts the userId and appId and returns 200 status and `{"1": "SUCCESS"}`
 - An Invalid user request returns a 400 status and `{"1": "FAILED"}`
-
 
 # 7. Tables
 

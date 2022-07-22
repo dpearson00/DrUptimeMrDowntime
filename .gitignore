@@ -9,6 +9,11 @@ frontend/node_modules/**
 */.gradle
 .m2
 */.m2
+*/bin
+
+# .idea files #
+##############
+*/.idea/workspace.xml
 
 # Build output directies
 /target

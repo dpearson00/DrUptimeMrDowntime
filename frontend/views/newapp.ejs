@@ -16,30 +16,33 @@
       </head>
     <body>
       <div class="titlebar">
-        <a href="/">
-          <i class="fa-solid fa-arrow-left-long"></i> Home </a>
+        <a href="/logout">
+            <i class="fa-solid fa-arrow-left-long"></i>&nbsp;&nbsp;Logout&nbsp;</a>
       </div>
       <div class="jumbotron">
         <p align="center">
         </p>
-        <h1 align="center">Login</h1>
+        <h1 align="center">New Application</h1>
         <div align="center">
           <hr>
-          <h3>Please provide your credentials!</h3>
-          <form method="post" action="/auth">
+          <h3>Hello, <%= name %>!<br>Please provide information below to monitor an application.</h3>
+          <form method="post" action="/postnewapp">
             <p>
-              <label for="email">Email:</label><br>
-              <input type="text" name="email" id="email">
+              <label for="title">Name:</label><br>
+              <input type="text" name="name" id="name">
             </p>
             <p>
-              <label for="password">Password:</label><br>
-              <input type="text" name="password" id="password">
+                <label for="title">Description:</label><br>
+                <input type="text" name="description" id="description">
             </p>
             <p>
-              <input class="blueButton" type="submit" value="Login">
+              <label for="url">URL:</label><br>
+              <input type="text" name="url" id="url">
+            </p>
+            <p>
+              <input class="blueButton" type="submit" value="Create Application">
             </p>
           </form>
-          <a href="/newuser"><button class="grayButton">Create Account</button></a>
         </div>
         <div class="jumbotron"></div>
         <p class="text-center text-muted">
@@ -51,21 +54,9 @@
           <p align="right">
           </p>
     </body>
-    <style>
-      .blueButton {
-          background-color: #008CBA;
-          border: none;
-          color: white;
-          padding: 15px 32px;
-          text-align: center;
-          text-decoration: none;
-          display: inline-block;
-          font-size: 16px;
-          margin: 4px 2px;
-          cursor: pointer;
-        }
-      .graybutton {
-        background-color: #333;
+  <style>
+    .blueButton {
+        background-color: #008CBA;
         border: none;
         color: white;
         padding: 15px 32px;
@@ -75,6 +66,23 @@
         font-size: 16px;
         margin: 4px 2px;
         cursor: pointer;
-      } 
-    </style>
+      }
+    .titlebar {
+      overflow: hidden;
+      background-color: #333;
+    }
+    .titlebar a {
+      float: left;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 24px;
+    }
+
+    .button-container {
+      width: 100%;
+      overflow-y: auto;
+    }
+  </style>
   </html>

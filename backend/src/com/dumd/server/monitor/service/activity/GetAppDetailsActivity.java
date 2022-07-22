@@ -1,8 +1,10 @@
 package com.dumd.server.monitor.service.activity;
 
 import com.amazonaws.services.lambda.runtime.Context;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.dumd.server.monitor.service.dynamodb.daos.ApplicationDao;
 import com.dumd.server.monitor.service.dynamodb.daos.UserDao;
+import com.dumd.server.monitor.service.models.requests.GetAppDetailsRequest;
 
 import javax.inject.Inject;
 
@@ -11,7 +13,7 @@ import javax.inject.Inject;
  *
  *  This API allows a user to get an application's details.
  */
-public class GetAppDetailsActivity {
+public class GetAppDetailsActivity implements RequestHandler<GetAppDetailsRequest, GetAppDetailsResult> {
     private final UserDao userDao;
     private final ApplicationDao applicationDao;
 

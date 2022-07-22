@@ -9,7 +9,7 @@ frontend/node_modules/**
 */.gradle
 .m2
 */.m2
-
+*/bin
 
 # .idea files #
 ##############

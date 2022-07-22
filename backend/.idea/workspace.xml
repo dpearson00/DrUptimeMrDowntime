@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="44c15bcb-2049-4f58-9c7c-a4e617a363e8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/activity/AddNewAppActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/activity/CreateAccountActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/activity/DeleteAppActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/activity/GetAppDetailsActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/activity/GetUserAppsActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/activity/LoginUserActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/dependency/DaoModule.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/dependency/ServiceComponent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/dynamodb/daos/ApplicationDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/dynamodb/daos/ServerHistoryDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/dynamodb/daos/UserDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/dynamodb/models/ServerHistory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/exceptions/ApplicationNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/exceptions/ServerHistoryNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/exceptions/UserNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/models/requests/AddNewAppRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/models/requests/CreateAccountRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/models/requests/DeleteAppRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/models/requests/GetAppDetailsRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/models/requests/GetUserAppsRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/models/requests/LoginUserRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/utils/DynamoDbClientProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/scripts/routes/newapp.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/scripts/routes/newuser.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/views/newapp.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/views/newuser.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1/dependencies-accessors/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1/fileChanges/last-build.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/vcs-1/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/main/App.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/dynamodb/models/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/dynamodb/models/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/dynamodb/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/dumd/server/monitor/service/dynamodb/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../documents/design_document.md" beforeDir="false" afterPath="$PROJECT_DIR$/../documents/design_document.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/mockapi.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/mockapi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/scripts/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/scripts/router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/scripts/routes/dash.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/scripts/routes/dash.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/scripts/routes/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/scripts/routes/home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/scripts/routes/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/scripts/routes/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/scripts/routes/view.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/scripts/routes/view.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/scripts/setupParams.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/scripts/setupParams.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/views/dash.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/views/dash.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/views/login.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/views/login.ejs" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="backend" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2BoKusy05X6E2CKteO9LOMngdXA" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="44c15bcb-2049-4f58-9c7c-a4e617a363e8" name="Changes" comment="" />
+      <created>1657567226935</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1657567226935</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

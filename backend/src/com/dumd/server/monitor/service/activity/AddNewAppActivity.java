@@ -4,6 +4,7 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.dumd.server.monitor.service.dynamodb.daos.ApplicationDao;
 import com.dumd.server.monitor.service.dynamodb.daos.UserDao;
+import com.dumd.server.monitor.service.dynamodb.models.User;
 import com.dumd.server.monitor.service.models.requests.AddNewAppRequest;
 import com.dumd.server.monitor.service.models.results.AddNewAppResult;
 import com.dumd.server.monitor.service.models.ApplicationModel;
@@ -43,6 +44,8 @@ public class AddNewAppActivity implements RequestHandler<AddNewAppRequest, AddNe
     @Override
     public AddNewAppResult handleRequest(final AddNewAppRequest addNewAppRequest, Context context) {
         // TODO: validate data and store it in the users table. Then return a result.
+
+
 
         // Dummy return statement
         return null;

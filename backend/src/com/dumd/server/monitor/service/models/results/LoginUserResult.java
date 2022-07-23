@@ -28,7 +28,7 @@ public class LoginUserResult {
         this.user = user;
     }
 
-    public Builder builder() { return new Builder(); }
+    public static Builder builder() { return new Builder(); }
 
     public static final class Builder {
         private Status status;

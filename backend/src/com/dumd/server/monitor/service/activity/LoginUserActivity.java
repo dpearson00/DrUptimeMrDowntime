@@ -4,12 +4,20 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.dumd.server.monitor.service.dynamodb.daos.ApplicationDao;
 import com.dumd.server.monitor.service.dynamodb.daos.UserDao;
+import com.dumd.server.monitor.service.dynamodb.models.User;
+import com.dumd.server.monitor.service.exceptions.InvalidLoginException;
+import com.dumd.server.monitor.service.exceptions.UserNotFoundException;
 import com.dumd.server.monitor.service.models.requests.LoginUserRequest;
 import com.dumd.server.monitor.service.models.results.LoginUserResult;
 import com.dumd.server.monitor.service.models.ApplicationModel;
 import com.dumd.server.monitor.service.models.UserModel;
+import com.dumd.server.monitor.service.models.utils.Status;
+import com.dumd.server.monitor.service.models.utils.StatusMessage;
+import com.dumd.server.monitor.service.utils.converters.ModelConverterUtil;
+import com.dumd.server.monitor.service.utils.hashing.HashingUtil;
 
 import javax.inject.Inject;
+import java.security.NoSuchAlgorithmException;
 
 /**
  *  Implementation of the LoginUserActivity for the DUMDServerMonitorService LoginUser API.
@@ -44,9 +52,23 @@ public class LoginUserActivity implements RequestHandler<LoginUserRequest, Login
      */
     @Override
     public LoginUserResult handleRequest(final LoginUserRequest loginUserRequest, Context context) {
-        // TODO: validate data and store it in the users table. Then return a result.
+        User user = userDao.getUserByEmail(loginUserRequest.getEmail());
+        boolean success;
+        try {
+            success = user.getHashedPassword().equals(HashingUtil.generateHash(loginUserRequest.getPassword(),
+                    HashingUtil.SHA256, HashingUtil.hexStringToByteArray(user.getSalt())));
 
-        // Dummy return statement
-        return null;
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("The algorithm for the hashing function does not exits.");
+        }
+
+        if (success) {
+            return LoginUserResult.builder()
+                    .withStatus(new Status(StatusMessage.SUCCESS, "200"))
+                    .withUser(ModelConverterUtil.toUserModel(user))
+                    .build();
+        } else {
+            throw new InvalidLoginException(); // TODO: add appropriate message
+        }
     }
 }

@@ -179,9 +179,10 @@ translate that to a table structure, like with the *`Playlist` POJO* versus the
 # 7.1 `users`
 
 userId // partition key, string  
-customerName // string  
 email // string  
-phoneNumber // string  
+customerName // string  
+phoneNumber // string
+salt // string  
 hashedPassword // string  
 appIds // list  
 

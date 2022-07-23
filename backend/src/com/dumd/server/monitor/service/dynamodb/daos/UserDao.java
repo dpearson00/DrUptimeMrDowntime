@@ -1,11 +1,13 @@
 package com.dumd.server.monitor.service.dynamodb.daos;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.dumd.server.monitor.service.dynamodb.models.User;
 import com.dumd.server.monitor.service.exceptions.UserNotFoundException;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import java.util.ArrayList;
 
 /**
  *  Accesses data for a user using {@link User} to represent the model in DynamoDB.
@@ -25,9 +27,9 @@ public class UserDao {
     }
 
     /**
-     *  Returns the {@link User} corresponding to the specified userId.
+     *  Returns the {@link User} corresponding to the user's email.
      *
-     * @param userId a unique id for a given user
+     * @param userId for a given user
      * @return the stored User, or null if none was found.
      */
     public User getUser(String userId) {
@@ -38,6 +40,18 @@ public class UserDao {
         }
 
         return user;
+    }
+
+    public User getUserByEmail(String email) {
+        User user = new User();
+        user.setEmail(email);
+
+        DynamoDBQueryExpression<User> queryExpression = new DynamoDBQueryExpression<User>()
+                .withHashKeyValues(user)
+                .withConsistentRead(false)
+                .withIndexName(User.USER_BY_EMAIL_INDEX);
+
+        return new ArrayList<>(dynamoDBMapper.query(User.class, queryExpression)).get(0);
     }
 
     /**

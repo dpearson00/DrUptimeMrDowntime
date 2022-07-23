@@ -1,19 +1,19 @@
 package com.dumd.server.monitor.service.models.utils;
 
 public class Status {
-    private String status;
+    private StatusMessage status;
     private String code;
 
-    public Status(String status, String code) {
+    public Status(StatusMessage status, String code) {
         this.status = status;
         this.code = code;
     }
 
-    public String getStatus() {
+    public StatusMessage getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(StatusMessage status) {
         this.status = status;
     }
 

@@ -3,11 +3,17 @@ package com.dumd.server.monitor.service.activity;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.dumd.server.monitor.service.dynamodb.daos.UserDao;
+import com.dumd.server.monitor.service.dynamodb.models.User;
 import com.dumd.server.monitor.service.models.requests.CreateAccountRequest;
 import com.dumd.server.monitor.service.models.results.CreateAccountResult;
 import com.dumd.server.monitor.service.models.UserModel;
+import com.dumd.server.monitor.service.models.utils.Status;
+import com.dumd.server.monitor.service.models.utils.StatusMessage;
+import com.dumd.server.monitor.service.utils.hashing.HashingUtil;
 
 import javax.inject.Inject;
+import java.security.NoSuchAlgorithmException;
+import java.util.UUID;
 
 /**
  *  Implementation of the CreateAccountActivity for the DUMDServerMonitorService CreateAccount API.
@@ -38,10 +44,36 @@ public class CreateAccountActivity implements RequestHandler<CreateAccountReques
      */
     @Override
     public CreateAccountResult handleRequest(final CreateAccountRequest createAccountRequest, Context context) {
-        // TODO: validate data and store it in the users table. Then return a result.
+        byte[] salt = HashingUtil.createSalt();
+        String saltHex = HashingUtil.bytesToHex(salt);
+        String hashedPassword;
 
-        // Dummy return statement
-        return null;
+        try {
+            hashedPassword = HashingUtil.generateHash(createAccountRequest.getPassword(), HashingUtil.SHA256, salt);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("The algorithm for the hashing function does not exits.");
+        }
+
+        User user = new User();
+        user.setCustomerName(createAccountRequest.getName());
+        user.setEmail(createAccountRequest.getEmail());
+        user.setHashedPassword(hashedPassword);
+        user.setSalt(saltHex);
+        user.setUserId(String.valueOf(UUID.randomUUID()));
+        user.setPhoneNumber(null);
+        user.setAppIds(null);
+
+        /*
+        TODO: Add the ability to verifiy a user's email. This would entail sending an email
+        with a code and having the user input the code and send it back to verify. A new table
+        attribute called 'emailVerifed' could be added and would be of boolean type.
+         */
+
+        userDao.saveUser(user);
+
+        return CreateAccountResult.builder()
+                .withStatus(new Status(StatusMessage.SUCCESS, "200"))
+                .withMessage(String.format("New user created with userId %s", user.getUserId())).build();
     }
 
 }

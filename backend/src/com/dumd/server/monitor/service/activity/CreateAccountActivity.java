@@ -44,7 +44,7 @@ public class CreateAccountActivity implements RequestHandler<CreateAccountReques
      */
     @Override
     public CreateAccountResult handleRequest(final CreateAccountRequest createAccountRequest, Context context) {
-        // TODO: Consider storing in hashedPassword and Salt in orginal format instead of converting to hex
+        // TODO: Consider storing in hashedPassword and salt in original format instead of converting to hex
         byte[] salt = HashingUtil.createSalt();
         String saltHex = HashingUtil.bytesToHex(salt);
         String hashedPassword;
@@ -52,7 +52,7 @@ public class CreateAccountActivity implements RequestHandler<CreateAccountReques
         try {
             hashedPassword = HashingUtil.generateHash(createAccountRequest.getPassword(), HashingUtil.SHA256, salt);
         } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("The algorithm for the hashing function does not exits.");
+            throw new RuntimeException("The algorithm for the hashing function does not exist.");
         }
 
         User user = new User();
@@ -65,9 +65,9 @@ public class CreateAccountActivity implements RequestHandler<CreateAccountReques
         user.setAppIds(null);
 
         /*
-        TODO: Add the ability to verifiy a user's email. This would entail sending an email
+        TODO: Add the ability to verify a user's email. This would entail sending an email
         with a code and having the user input the code and send it back to verify. A new table
-        attribute called 'emailVerifed' could be added and would be of boolean type.
+        attribute called 'emailVerified' could be added and would be of boolean type.
          */
 
         userDao.saveUser(user);

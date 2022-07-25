@@ -6,7 +6,6 @@ import com.dumd.server.monitor.service.dynamodb.daos.ApplicationDao;
 import com.dumd.server.monitor.service.dynamodb.daos.UserDao;
 import com.dumd.server.monitor.service.dynamodb.models.User;
 import com.dumd.server.monitor.service.exceptions.InvalidLoginException;
-import com.dumd.server.monitor.service.exceptions.UserNotFoundException;
 import com.dumd.server.monitor.service.models.requests.LoginUserRequest;
 import com.dumd.server.monitor.service.models.results.LoginUserResult;
 import com.dumd.server.monitor.service.models.ApplicationModel;
@@ -59,7 +58,7 @@ public class LoginUserActivity implements RequestHandler<LoginUserRequest, Login
                     HashingUtil.SHA256, HashingUtil.hexStringToByteArray(user.getSalt())));
 
         } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("The algorithm for the hashing function does not exits.");
+            throw new RuntimeException("The algorithm for the hashing function does not exist.");
         }
 
         if (success) {

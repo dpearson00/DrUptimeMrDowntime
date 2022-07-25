@@ -14,14 +14,14 @@ const auth = (req, res) => {
     .then(function (response) {
       if (response.data[1] == "SUCCESS") {
         console.log(
-          "/users/auth: Test Success!\n Authenticated as " + req.body.token
+          "/users/auth: Test success!\n Authenticated as " + req.body.token
         );
       } else {
         console.log("/users/auth: Test failed!");
       }
     })
     .catch(function (error) {
-        console.log("/users/auth: Test failed!");
+      console.log("/users/auth: Test failed!");
     });
 };
 
@@ -38,13 +38,13 @@ const createApp = (req, res) => {
     })
     .then(function (response) {
       if (response.data[1] == "SUCCESS") {
-        console.log("/apps/:userId/create: Test Success!");
+        console.log("/apps/:userId/create: Test success!");
       } else {
         console.log("/apps/:userId/create: Test failed!");
       }
     })
     .catch(function (error) {
-        console.log("/apps/:userId/create: Test failed!");
+      console.log("/apps/:userId/create: Test failed!");
     });
 };
 
@@ -61,19 +61,66 @@ const createUser = (req, res) => {
     })
     .then(function (response) {
       if (response.data[1] == "SUCCESS") {
-        console.log("/users/create: Test Success!");
+        console.log("/users/create: Test success!");
       } else {
         console.log("/users/create: Test failed!");
       }
     })
     .catch(function (error) {
-        console.log("/users/create: Test failed!");
+      console.log("/users/create: Test failed!");
+    });
+};
+
+/*
+    Get a user's apps
+    /apps/:userId
+*/
+const getApps = (req, res) => {
+  axios
+    .get(`${process.env.prodApiLink}/users/000000/apps`)
+    .then(function (response) {
+      var name = JSON.parse(JSON.stringify(response.data[1]));
+      var ids = JSON.parse(JSON.stringify(response.data[2]));
+      console.log(
+        "/users/:userId/apps: Test success! Apps are:" +
+          name +
+          " with ids: " +
+          ids
+      );
+    })
+    .catch(function (error) {
+      console.log("/users/:userId/apps: Test failed!");
+    });
+};
+
+/*
+    Get app details
+    /apps/:userId/view/:appId
+*/
+const getApp = (req, res) => {
+  axios
+    .get(`${process.env.prodApiLink}/apps/000000/view/000000`)
+    .then(function (response) {
+      if (response.data[1] == "SUCCESS") {
+        console.log(
+          "/apps/:userId/view/:appId: Test success! Name: " +
+            response.data[1] +
+            " Description: " +
+            response.data[2]
+        );
+      } else {
+        console.log("/apps/:userId/view/:appId: Test failed!");
+      }
+    })
+    .catch(function (error) {
+      console.log("/apps/:userId/view/:appId: Test failed!");
     });
 };
 
 console.log(
   "Starting tests! Assuming:\nEMAIL: test@test.com\nPASSWORD: test\nUSERID: 000000\nAPI LINK: " +
-    process.env.prodApiLink + "\n"
+    process.env.prodApiLink +
+    "\n"
 );
 
 console.log("/users/auth: Test started!");
@@ -82,3 +129,5 @@ console.log("/apps/:userId/create: Test started!");
 createApp();
 console.log("/users/create: Test started!");
 createUser();
+console.log("/users/:userId/apps: Test started!");
+getApps();

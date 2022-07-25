@@ -72,7 +72,6 @@ public class GetUserAppsActivity implements RequestHandler<GetUserAppsRequest, G
             applications.add(applicationDao.getApplication(appId));
         }
 
-        // Dummy return statement
         return GetUserAppsResult.builder()
                 .withStatus(new Status(StatusMessage.SUCCESS, "200"))
                 .withApplications(ModelConverterUtil.toApplicationModelList(applications))

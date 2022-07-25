@@ -57,17 +57,12 @@ public class DeleteAppActivity implements RequestHandler<DeleteAppRequest, Delet
         if(deleteAppRequest.getUserId() == null) {
             throw new InvalidRequestException("No User Id present. Please enter valid User Id.");
         }
+
         if(deleteAppRequest.getAppId() == null) {
             throw new InvalidRequestException("No App Id present. Please enter valid App Id.");
         }
 
         Application app = applicationDao.getApplication(deleteAppRequest.getAppId());
-        // Will be caught and passed automatically
-//        try {
-//            app = applicationDao.getApplication(deleteAppRequest.getAppId());
-//        } catch (ApplicationNotFoundException e) {
-//            throw new ApplicationNotFoundException(e.getMessage());
-//        }
 
         if(!app.getAppId().equals(deleteAppRequest.getAppId())) {
             throw new InvalidRequestException(

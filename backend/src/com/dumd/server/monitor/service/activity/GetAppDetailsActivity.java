@@ -4,9 +4,17 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.dumd.server.monitor.service.dynamodb.daos.ApplicationDao;
 import com.dumd.server.monitor.service.dynamodb.daos.UserDao;
+import com.dumd.server.monitor.service.dynamodb.models.Application;
+import com.dumd.server.monitor.service.exceptions.InvalidRequestException;
+import com.dumd.server.monitor.service.exceptions.UserNotFoundException;
 import com.dumd.server.monitor.service.models.requests.GetAppDetailsRequest;
 import com.dumd.server.monitor.service.models.results.GetAppDetailsResult;
 import com.dumd.server.monitor.service.models.ApplicationModel;
+import com.dumd.server.monitor.service.models.utils.Status;
+import com.dumd.server.monitor.service.models.utils.StatusMessage;
+import com.dumd.server.monitor.service.utils.converters.ModelConverterUtil;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
 
@@ -16,6 +24,7 @@ import javax.inject.Inject;
  *  This API allows a user to get an application's details.
  */
 public class GetAppDetailsActivity implements RequestHandler<GetAppDetailsRequest, GetAppDetailsResult> {
+    private final Logger log = LogManager.getLogger();
     private final UserDao userDao;
     private final ApplicationDao applicationDao;
 
@@ -42,9 +51,17 @@ public class GetAppDetailsActivity implements RequestHandler<GetAppDetailsReques
      */
     @Override
     public GetAppDetailsResult handleRequest(final GetAppDetailsRequest getAppDetailsRequest, Context context) {
-        // TODO: validate data and store it in the users table. Then return a result.
+        log.info("Received GetAppDetailsRequest {}", getAppDetailsRequest);
 
-        // Dummy return statement
-        return null;
+        if (getAppDetailsRequest.getAppId() == null) {
+            throw new InvalidRequestException("No AppId provided. Please enter valid Application Id.");
+        }
+
+        Application app = applicationDao.getApplication(getAppDetailsRequest.getAppId());
+
+        return GetAppDetailsResult.builder()
+                .withStatus(new Status(StatusMessage.SUCCESS, "200"))
+                .withApplication(ModelConverterUtil.toApplicationModel(app))
+                .build();
     }
 }

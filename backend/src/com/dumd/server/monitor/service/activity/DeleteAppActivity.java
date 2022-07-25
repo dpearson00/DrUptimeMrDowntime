@@ -4,11 +4,18 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.dumd.server.monitor.service.dynamodb.daos.ApplicationDao;
 import com.dumd.server.monitor.service.dynamodb.daos.UserDao;
+import com.dumd.server.monitor.service.dynamodb.models.Application;
+import com.dumd.server.monitor.service.exceptions.ApplicationNotFoundException;
+import com.dumd.server.monitor.service.exceptions.InvalidRequestException;
 import com.dumd.server.monitor.service.models.requests.DeleteAppRequest;
 import com.dumd.server.monitor.service.models.results.DeleteAppResult;
 import com.dumd.server.monitor.service.models.UserModel;
 
 import javax.inject.Inject;
+
+import com.dumd.server.monitor.service.models.utils.Status;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  *  Implementation of the DeleteAppActivity for the DUMDServerMonitorService DeleteApp API.
@@ -16,6 +23,7 @@ import javax.inject.Inject;
  *  This API allows a customer to create an account.
  */
 public class DeleteAppActivity implements RequestHandler<DeleteAppRequest, DeleteAppResult> {
+    private final Logger log = LogManager.getLogger();
     private final UserDao userDao;
     private final ApplicationDao applicationDao;
 
@@ -45,8 +53,35 @@ public class DeleteAppActivity implements RequestHandler<DeleteAppRequest, Delet
     @Override
     public DeleteAppResult handleRequest(final DeleteAppRequest deleteAppRequest, Context context) {
         // TODO: validate data and store it in the users table. Then return a result.
+        log.info("Received DeleteAppRequest {}", deleteAppRequest);
 
-        // Dummy return statement
-        return null;
+        if(deleteAppRequest.getUserId() == null) {
+            throw new InvalidRequestException("No User Id present. Please enter valid User Id.");
+        }
+        if(deleteAppRequest.getAppId() == null) {
+            throw new InvalidRequestException("No App Id present. Please enter valid App Id.");
+        }
+
+        Application app = applicationDao.getApplication(deleteAppRequest.getAppId());
+        // Will be caught and passed automatically
+//        try {
+//            app = applicationDao.getApplication(deleteAppRequest.getAppId());
+//        } catch (ApplicationNotFoundException e) {
+//            throw new ApplicationNotFoundException(e.getMessage());
+//        }
+
+        if(!app.getAppId().equals(deleteAppRequest.getAppId())) {
+            throw new InvalidRequestException(
+                    String.format("Requested Application Id: %s and " +
+                            "returned Application Id: %s, do not match."
+                            ,deleteAppRequest.getAppId(), app.getAppId()));
+        }
+
+        applicationDao.deleteApplication(app);
+
+        return DeleteAppResult.builder()
+                .withStatus(new Status("SUCCESS", "1")) // CHANGE TO Status ENUM
+                .withMessage(String.format("Application Id: %s successfully deleted.", app.getAppId()))
+                .build();
     }
 }

@@ -44,6 +44,7 @@ public class CreateAccountActivity implements RequestHandler<CreateAccountReques
      */
     @Override
     public CreateAccountResult handleRequest(final CreateAccountRequest createAccountRequest, Context context) {
+        // TODO: Consider storing in hashedPassword and Salt in orginal format instead of converting to hex
         byte[] salt = HashingUtil.createSalt();
         String saltHex = HashingUtil.bytesToHex(salt);
         String hashedPassword;

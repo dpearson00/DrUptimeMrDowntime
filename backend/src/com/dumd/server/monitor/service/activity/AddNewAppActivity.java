@@ -5,6 +5,7 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.dumd.server.monitor.service.dynamodb.daos.ApplicationDao;
 import com.dumd.server.monitor.service.dynamodb.daos.UserDao;
 import com.dumd.server.monitor.service.dynamodb.models.Application;
+import com.dumd.server.monitor.service.dynamodb.models.User;
 import com.dumd.server.monitor.service.models.requests.AddNewAppRequest;
 import com.dumd.server.monitor.service.models.results.AddNewAppResult;
 import com.dumd.server.monitor.service.models.ApplicationModel;
@@ -53,7 +54,8 @@ public class AddNewAppActivity implements RequestHandler<AddNewAppRequest, AddNe
         log.info("Received AddNewAppsRequest {}", addNewAppRequest);
 
         Application application = new Application();
-        application.setAppId(String.valueOf(UUID.randomUUID()));
+        String appId = String.valueOf(UUID.randomUUID());
+        application.setAppId(appId);
         application.setAppName(addNewAppRequest.getAppName());
         application.setAppUrl(addNewAppRequest.getUrl());
         application.setDescription(addNewAppRequest.getAppDescription());
@@ -61,6 +63,10 @@ public class AddNewAppActivity implements RequestHandler<AddNewAppRequest, AddNe
         application.setUserId(addNewAppRequest.getUserId());
 
         applicationDao.saveApplication(application);
+
+        User user = userDao.getUser(addNewAppRequest.getUserId());
+        user.getAppIds().add(appId);
+        userDao.saveUser(user);
 
         return AddNewAppResult.builder()
                 .withStatus(new Status(StatusMessage.SUCCESS, "200"))

@@ -70,7 +70,7 @@ public class CreateAccountActivity implements RequestHandler<CreateAccountReques
         }
 
         User user = new User();
-        user.setCustomerName(createAccountRequest.getName());
+        user.setCustomerName(createAccountRequest.getCustomerName());
         user.setEmail(createAccountRequest.getEmail());
         user.setHashedPassword(hashedPassword);
         user.setSalt(saltHex);

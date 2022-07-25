@@ -5,6 +5,7 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.dumd.server.monitor.service.dynamodb.daos.ApplicationDao;
 import com.dumd.server.monitor.service.dynamodb.daos.UserDao;
 import com.dumd.server.monitor.service.dynamodb.models.Application;
+import com.dumd.server.monitor.service.dynamodb.models.User;
 import com.dumd.server.monitor.service.exceptions.InvalidRequestException;
 import com.dumd.server.monitor.service.models.requests.DeleteAppRequest;
 import com.dumd.server.monitor.service.models.results.DeleteAppResult;
@@ -72,6 +73,10 @@ public class DeleteAppActivity implements RequestHandler<DeleteAppRequest, Delet
         }
 
         applicationDao.deleteApplication(app);
+
+        User user = userDao.getUser(app.getUserId());
+        user.getAppIds().remove(deleteAppRequest.getAppId());
+        userDao.saveUser(user);
 
         return DeleteAppResult.builder()
                 .withStatus(new Status(StatusMessage.SUCCESS, "200"))

@@ -5,7 +5,6 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.dumd.server.monitor.service.dynamodb.daos.ApplicationDao;
 import com.dumd.server.monitor.service.dynamodb.daos.UserDao;
 import com.dumd.server.monitor.service.dynamodb.models.Application;
-import com.dumd.server.monitor.service.exceptions.ApplicationNotFoundException;
 import com.dumd.server.monitor.service.exceptions.InvalidRequestException;
 import com.dumd.server.monitor.service.models.requests.DeleteAppRequest;
 import com.dumd.server.monitor.service.models.results.DeleteAppResult;
@@ -14,6 +13,7 @@ import com.dumd.server.monitor.service.models.UserModel;
 import javax.inject.Inject;
 
 import com.dumd.server.monitor.service.models.utils.Status;
+import com.dumd.server.monitor.service.models.utils.StatusMessage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -52,7 +52,6 @@ public class DeleteAppActivity implements RequestHandler<DeleteAppRequest, Delet
      */
     @Override
     public DeleteAppResult handleRequest(final DeleteAppRequest deleteAppRequest, Context context) {
-        // TODO: validate data and store it in the users table. Then return a result.
         log.info("Received DeleteAppRequest {}", deleteAppRequest);
 
         if(deleteAppRequest.getUserId() == null) {
@@ -80,7 +79,7 @@ public class DeleteAppActivity implements RequestHandler<DeleteAppRequest, Delet
         applicationDao.deleteApplication(app);
 
         return DeleteAppResult.builder()
-                .withStatus(new Status("SUCCESS", "1")) // CHANGE TO Status ENUM
+                .withStatus(new Status(StatusMessage.SUCCESS, "200"))
                 .withMessage(String.format("Application Id: %s successfully deleted.", app.getAppId()))
                 .build();
     }

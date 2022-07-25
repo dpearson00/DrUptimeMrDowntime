@@ -10,6 +10,8 @@ import com.dumd.server.monitor.service.models.UserModel;
 import com.dumd.server.monitor.service.models.utils.Status;
 import com.dumd.server.monitor.service.models.utils.StatusMessage;
 import com.dumd.server.monitor.service.utils.hashing.HashingUtil;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
 import java.security.NoSuchAlgorithmException;
@@ -21,6 +23,7 @@ import java.util.UUID;
  *  This API allows a customer to create an account.
  */
 public class CreateAccountActivity implements RequestHandler<CreateAccountRequest, CreateAccountResult> {
+    private final Logger log = LogManager.getLogger();
     private final UserDao userDao;
 
     /**
@@ -44,6 +47,8 @@ public class CreateAccountActivity implements RequestHandler<CreateAccountReques
      */
     @Override
     public CreateAccountResult handleRequest(final CreateAccountRequest createAccountRequest, Context context) {
+        log.info("Received CreateAccountRequest {}", createAccountRequest);
+
         // TODO: Consider storing in hashedPassword and salt in original format instead of converting to hex
         byte[] salt = HashingUtil.createSalt();
         String saltHex = HashingUtil.bytesToHex(salt);

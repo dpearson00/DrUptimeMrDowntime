@@ -59,8 +59,9 @@ public class UserDao {
      *
      * @param user a User object
      */
-    public void saveUser(User user) {
+    public User saveUser(User user) {
         dynamoDBMapper.save(user);
         // TODO: Time permitting, put in logic that makes sure info was saved in DB
+        return user;
     }
 }

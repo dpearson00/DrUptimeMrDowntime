@@ -14,6 +14,8 @@ import com.dumd.server.monitor.service.utils.converters.ModelConverterUtil;
 
 import javax.inject.Inject;
 import java.util.UUID;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  *  Implementation of the AddNewAppActivity for the DUMDServerMonitorService AddNewApp API.
@@ -21,6 +23,7 @@ import java.util.UUID;
  *  This API allows a user to add a new application to be monitored.
  */
 public class AddNewAppActivity implements RequestHandler<AddNewAppRequest, AddNewAppResult> {
+    private final Logger log = LogManager.getLogger();
     private final UserDao userDao;
     private final ApplicationDao applicationDao;
 
@@ -47,7 +50,8 @@ public class AddNewAppActivity implements RequestHandler<AddNewAppRequest, AddNe
      */
     @Override
     public AddNewAppResult handleRequest(final AddNewAppRequest addNewAppRequest, Context context) {
-        // TODO: validate data and store it in the users table. Then return a result.
+        log.info("Received AddNewAppsRequest {}", addNewAppRequest);
+
         Application application = new Application();
         application.setAppId(String.valueOf(UUID.randomUUID()));
         application.setAppName(addNewAppRequest.getAppName());

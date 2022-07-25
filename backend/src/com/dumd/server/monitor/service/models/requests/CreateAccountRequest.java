@@ -3,12 +3,12 @@ package com.dumd.server.monitor.service.models.requests;
 import java.util.Objects;
 
 public class CreateAccountRequest {
-    private String name;
+    private String customerName;
     private String email;
     private String password;
 
-    public CreateAccountRequest(String name, String email, String password) {
-        this.name = name;
+    public CreateAccountRequest(String customerName, String email, String password) {
+        this.customerName = customerName;
         this.email = email;
         this.password = password;
     }
@@ -16,17 +16,17 @@ public class CreateAccountRequest {
     public CreateAccountRequest(){}
 
     public CreateAccountRequest(Builder builder) {
-        this.name = builder.name;
+        this.customerName = builder.name;
         this.email = builder.email;
         this.password = builder.password;
     }
 
-    public String getName() {
-        return name;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
     public String getEmail() {
@@ -50,18 +50,18 @@ public class CreateAccountRequest {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CreateAccountRequest that = (CreateAccountRequest) o;
-        return name.equals(that.name) && email.equals(that.email) && password.equals(that.password);
+        return customerName.equals(that.customerName) && email.equals(that.email) && password.equals(that.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, email, password);
+        return Objects.hash(customerName, email, password);
     }
 
     @Override
     public String toString() {
         return "CreateAccountRequest{" +
-                "name='" + name + '\'' +
+                "name='" + customerName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}';

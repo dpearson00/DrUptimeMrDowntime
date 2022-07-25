@@ -30,7 +30,7 @@ public class GetUserAppsResult {
         this.applications = applications;
     }
 
-    public Builder builder() { return new Builder();}
+    public static Builder builder() { return new Builder();}
 
     public static final class Builder {
         private Status status;

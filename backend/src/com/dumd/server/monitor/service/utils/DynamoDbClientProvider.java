@@ -10,7 +10,7 @@ public class DynamoDbClientProvider {
     }
 
     public static AmazonDynamoDB getDynamoDBClient() {
-        return getDynamoDBClient(Regions.US_WEST_2);
+        return getDynamoDBClient(Regions.US_EAST_1);
     }
 
     public static AmazonDynamoDB getDynamoDBClient(Regions region) {

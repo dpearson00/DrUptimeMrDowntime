@@ -5,6 +5,9 @@ import com.dumd.server.monitor.service.dynamodb.models.User;
 import com.dumd.server.monitor.service.models.ApplicationModel;
 import com.dumd.server.monitor.service.models.UserModel;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ModelConverterUtil {
 
     public static UserModel toUserModel(User user) {
@@ -28,5 +31,15 @@ public class ModelConverterUtil {
                 .withDescription(application.getDescription())
                 .withServerHistoryId(application.getServerHistoryIds())
                 .build();
+    }
+
+    public static List<ApplicationModel> toApplicationModelList(List<Application> applicationList) {
+        List<ApplicationModel> applicationModelList = new ArrayList<>();
+
+        for(Application app : applicationList) {
+            applicationModelList.add(toApplicationModel(app));
+        }
+
+        return applicationModelList;
     }
 }

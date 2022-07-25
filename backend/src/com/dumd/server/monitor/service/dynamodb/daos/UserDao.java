@@ -36,7 +36,7 @@ public class UserDao {
         User user = this.dynamoDBMapper.load(User.class, userId);
 
         if (user == null) {
-            throw new UserNotFoundException(); // TODO add appropriate message
+            throw new UserNotFoundException(String.format("Could not find user for userId: %s", userId));
         }
 
         return user;
@@ -61,7 +61,6 @@ public class UserDao {
      */
     public User saveUser(User user) {
         dynamoDBMapper.save(user);
-        // TODO: Time permitting, put in logic that makes sure info was saved in DB
         return user;
     }
 }

@@ -34,7 +34,7 @@ public class ApplicationDao {
         Application application = this.dynamoDBMapper.load(Application.class, appId);
 
         if (application == null) {
-            throw new ApplicationNotFoundException(); // TODO add appropriate message
+            throw new ApplicationNotFoundException(String.format("Could not find application for appId: %s", appId));
         }
 
         return application;
@@ -46,7 +46,6 @@ public class ApplicationDao {
      */
     public Application saveApplication(Application application) {
         dynamoDBMapper.save(application);
-        // TODO: Time permitting, put in logic that makes sure info was saved in DB
         // Validation done in calling handleRequest
         return  application;
     }

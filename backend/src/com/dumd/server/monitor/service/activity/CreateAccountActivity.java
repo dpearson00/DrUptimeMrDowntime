@@ -4,6 +4,7 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.dumd.server.monitor.service.dynamodb.daos.UserDao;
 import com.dumd.server.monitor.service.dynamodb.models.User;
+import com.dumd.server.monitor.service.exceptions.InvalidRequestException;
 import com.dumd.server.monitor.service.models.requests.CreateAccountRequest;
 import com.dumd.server.monitor.service.models.results.CreateAccountResult;
 import com.dumd.server.monitor.service.models.UserModel;
@@ -48,6 +49,14 @@ public class CreateAccountActivity implements RequestHandler<CreateAccountReques
     @Override
     public CreateAccountResult handleRequest(final CreateAccountRequest createAccountRequest, Context context) {
         log.info("Received CreateAccountRequest {}", createAccountRequest);
+
+        if (createAccountRequest.getEmail() == null) {
+            throw new InvalidRequestException("No email present. Please enter valid email.");
+        }
+
+        if (createAccountRequest.getPassword() == null) {
+            throw new InvalidRequestException("No password present. Please enter valid password.");
+        }
 
         // TODO: Consider storing in hashedPassword and salt in original format instead of converting to hex
         byte[] salt = HashingUtil.createSalt();

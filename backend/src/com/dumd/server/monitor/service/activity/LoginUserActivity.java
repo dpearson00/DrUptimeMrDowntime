@@ -6,6 +6,7 @@ import com.dumd.server.monitor.service.dynamodb.daos.ApplicationDao;
 import com.dumd.server.monitor.service.dynamodb.daos.UserDao;
 import com.dumd.server.monitor.service.dynamodb.models.User;
 import com.dumd.server.monitor.service.exceptions.InvalidLoginException;
+import com.dumd.server.monitor.service.exceptions.InvalidRequestException;
 import com.dumd.server.monitor.service.models.requests.LoginUserRequest;
 import com.dumd.server.monitor.service.models.results.LoginUserResult;
 import com.dumd.server.monitor.service.models.ApplicationModel;
@@ -56,6 +57,14 @@ public class LoginUserActivity implements RequestHandler<LoginUserRequest, Login
     public LoginUserResult handleRequest(final LoginUserRequest loginUserRequest, Context context) {
         log.info("Received LoginUserRequest {}", loginUserRequest);
 
+        if (loginUserRequest.getEmail() == null) {
+            throw new InvalidRequestException("No email present. Please enter valid email.");
+        }
+
+        if (loginUserRequest.getPassword() == null) {
+            throw new InvalidRequestException("No password present. Please enter valid password.");
+        }
+
         User user = userDao.getUserByEmail(loginUserRequest.getEmail());
         boolean success;
         try {
@@ -72,7 +81,7 @@ public class LoginUserActivity implements RequestHandler<LoginUserRequest, Login
                     .withUser(ModelConverterUtil.toUserModel(user))
                     .build();
         } else {
-            throw new InvalidLoginException(); // TODO: add appropriate message
+            throw new InvalidLoginException("The email and password do not match.");
         }
     }
 }

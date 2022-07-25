@@ -4,7 +4,8 @@
   "description": "This is the front end to the Dr Uptime and Mr Downtime application.",
   "main": "main.js",
   "scripts": {
-    "test": "node main.js"
+    "start": "node main.js",
+    "test:backend": "node helpers/mockReq.js"
   },
   "repository": {
     "type": "git",

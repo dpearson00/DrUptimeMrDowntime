@@ -22,7 +22,7 @@ if (
 if (process.env.mockApi == "true") {
   global.__apiLink = `http://localhost:8081`;
   console.log("Using the mock API.");
-  require(`${__basedir}/mockapi.js`);
+  require(`${__basedir}/helpers/mockapi.js`);
 } else {
   global.__apiLink = process.env.prodApiLink;
   console.log("Using PROD API, currently set to " + process.env.prodApiLink);

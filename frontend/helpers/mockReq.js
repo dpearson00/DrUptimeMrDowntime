@@ -131,3 +131,5 @@ console.log("/users/create: Test started!");
 createUser();
 console.log("/users/:userId/apps: Test started!");
 getApps();
+console.log("/apps/:userId/view/:appId: Test started!");
+getApp();

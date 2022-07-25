@@ -28,7 +28,7 @@ public class GetAppDetailsResult {
         this.application = application;
     }
 
-    public Builder builder() { return new Builder(); }
+    public static Builder builder() { return new Builder(); }
 
     public static final class Builder {
         private Status status;

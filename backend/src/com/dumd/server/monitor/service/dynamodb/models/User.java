@@ -2,6 +2,7 @@ package com.dumd.server.monitor.service.dynamodb.models;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIndexHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
 import java.util.List;
@@ -12,9 +13,11 @@ import java.util.List;
 @DynamoDBTable(tableName = "users")
 public class User {
 
+    public static final String USER_BY_EMAIL_INDEX = "UserByEmailIndex";
     private String userId;
     private String customerName;
     private String email;
+    private String salt;
     private String hashedPassword;
     private String phoneNumber;
     private List<String> appIds;
@@ -37,13 +40,22 @@ public class User {
         this.customerName = customerName;
     }
 
-    @DynamoDBAttribute(attributeName = "email")
+    @DynamoDBIndexHashKey(attributeName = "email")
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @DynamoDBAttribute(attributeName = "salt")
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 
     @DynamoDBAttribute(attributeName = "hashedPassword")

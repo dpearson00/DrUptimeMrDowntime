@@ -1,11 +1,13 @@
 package com.dumd.server.monitor.service.dynamodb.daos;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.dumd.server.monitor.service.dynamodb.models.User;
 import com.dumd.server.monitor.service.exceptions.UserNotFoundException;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import java.util.ArrayList;
 
 /**
  *  Accesses data for a user using {@link User} to represent the model in DynamoDB.
@@ -25,19 +27,31 @@ public class UserDao {
     }
 
     /**
-     *  Returns the {@link User} corresponding to the specified userId.
+     *  Returns the {@link User} corresponding to the user's email.
      *
-     * @param userId a unique id for a given user
+     * @param userId for a given user
      * @return the stored User, or null if none was found.
      */
     public User getUser(String userId) {
         User user = this.dynamoDBMapper.load(User.class, userId);
 
         if (user == null) {
-            throw new UserNotFoundException(); // TODO add appropriate message
+            throw new UserNotFoundException(String.format("Could not find user for userId: %s", userId));
         }
 
         return user;
+    }
+
+    public User getUserByEmail(String email) {
+        User user = new User();
+        user.setEmail(email);
+
+        DynamoDBQueryExpression<User> queryExpression = new DynamoDBQueryExpression<User>()
+                .withHashKeyValues(user)
+                .withConsistentRead(false)
+                .withIndexName(User.USER_BY_EMAIL_INDEX);
+
+        return new ArrayList<>(dynamoDBMapper.query(User.class, queryExpression)).get(0);
     }
 
     /**
@@ -45,8 +59,8 @@ public class UserDao {
      *
      * @param user a User object
      */
-    public void saveUser(User user) {
+    public User saveUser(User user) {
         dynamoDBMapper.save(user);
-        // TODO: Time permitting, put in logic that makes sure info was saved in DB
+        return user;
     }
 }

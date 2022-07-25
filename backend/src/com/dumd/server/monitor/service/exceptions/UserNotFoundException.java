@@ -1,7 +1,7 @@
 package com.dumd.server.monitor.service.exceptions;
 
 /**
- *  Exception to throw when a given userId is not found in the database
+ *  Exception to throw when a given userId or email is not found in the database
  */
 public class UserNotFoundException extends RuntimeException {
 

@@ -4,11 +4,18 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.dumd.server.monitor.service.dynamodb.daos.ApplicationDao;
 import com.dumd.server.monitor.service.dynamodb.daos.UserDao;
+import com.dumd.server.monitor.service.dynamodb.models.Application;
 import com.dumd.server.monitor.service.models.requests.AddNewAppRequest;
 import com.dumd.server.monitor.service.models.results.AddNewAppResult;
 import com.dumd.server.monitor.service.models.ApplicationModel;
+import com.dumd.server.monitor.service.models.utils.Status;
+import com.dumd.server.monitor.service.models.utils.StatusMessage;
+import com.dumd.server.monitor.service.utils.converters.ModelConverterUtil;
 
 import javax.inject.Inject;
+import java.util.UUID;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  *  Implementation of the AddNewAppActivity for the DUMDServerMonitorService AddNewApp API.
@@ -16,6 +23,7 @@ import javax.inject.Inject;
  *  This API allows a user to add a new application to be monitored.
  */
 public class AddNewAppActivity implements RequestHandler<AddNewAppRequest, AddNewAppResult> {
+    private final Logger log = LogManager.getLogger();
     private final UserDao userDao;
     private final ApplicationDao applicationDao;
 
@@ -42,9 +50,21 @@ public class AddNewAppActivity implements RequestHandler<AddNewAppRequest, AddNe
      */
     @Override
     public AddNewAppResult handleRequest(final AddNewAppRequest addNewAppRequest, Context context) {
-        // TODO: validate data and store it in the users table. Then return a result.
+        log.info("Received AddNewAppsRequest {}", addNewAppRequest);
 
-        // Dummy return statement
-        return null;
+        Application application = new Application();
+        application.setAppId(String.valueOf(UUID.randomUUID()));
+        application.setAppName(addNewAppRequest.getAppName());
+        application.setAppUrl(addNewAppRequest.getUrl());
+        application.setDescription(addNewAppRequest.getAppDescription());
+        application.setServerHistoryIds(null);
+        application.setUserId(addNewAppRequest.getUserId());
+
+        applicationDao.saveApplication(application);
+
+        return AddNewAppResult.builder()
+                .withStatus(new Status(StatusMessage.SUCCESS, "200"))
+                .withApplication(ModelConverterUtil.toApplicationModel(application))
+                .build();
     }
 }

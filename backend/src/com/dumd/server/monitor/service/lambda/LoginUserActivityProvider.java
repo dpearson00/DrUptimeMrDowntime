@@ -15,7 +15,7 @@ public class LoginUserActivityProvider implements RequestHandler<LoginUserReques
 
     @Override
     public LoginUserResult handleRequest(LoginUserRequest input, Context context) {
-        return null;
+        return getServiceComponent().provideLoginUserActivity().handleRequest(input, context);
     }
 
     private ServiceComponent getServiceComponent() {

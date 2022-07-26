@@ -1,0 +1,8 @@
+// Users
+userId // partition key, String     (Hash Key)
+customerName // String
+email // String     (GSI Hash Key)
+salt // String
+hashedPassword // String
+phoneNumber // String
+appIds // List<String>

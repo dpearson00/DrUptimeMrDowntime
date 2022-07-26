@@ -1,0 +1,4 @@
+// Server History
+serverHistoryId // partition key, String
+appId // String
+errorLogs // Map<String, String>

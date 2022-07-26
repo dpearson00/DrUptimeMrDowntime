@@ -1,0 +1,7 @@
+// Applications
+appId // partition key, String
+appName // String
+description // String
+appUrl // String
+userId // String
+serverHistoryIds // List<String>

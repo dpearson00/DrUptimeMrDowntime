@@ -1,0 +1,14 @@
+Resources:
+  UserTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: "serverHistoryId"
+          AttributeType: "S"
+      KeySchema:
+        - AttributeName: "serverHistoryId"
+          KeyType: "HASH"
+      TableName: "serverHistory"
+      PointInTimeRecoverySpecification:
+        PointInTimeRecoveryEnabled: true
+      BillingMode: PAY_PER_REQUEST

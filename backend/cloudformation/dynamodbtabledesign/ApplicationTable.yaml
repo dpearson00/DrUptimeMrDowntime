@@ -1,0 +1,14 @@
+Resources:
+  UserTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: "appId"
+          AttributeType: "S"
+      KeySchema:
+        - AttributeName: "appId"
+          KeyType: "HASH"
+      TableName: "applications"
+      PointInTimeRecoverySpecification:
+        PointInTimeRecoveryEnabled: true
+      BillingMode: PAY_PER_REQUEST

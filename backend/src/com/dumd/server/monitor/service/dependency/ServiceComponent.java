@@ -1,6 +1,7 @@
 package com.dumd.server.monitor.service.dependency;
 
 import com.dumd.server.monitor.service.activity.*;
+import com.dumd.server.monitor.service.event.CheckAppStatusEvent;
 import dagger.Component;
 
 import javax.inject.Singleton;
@@ -14,5 +15,5 @@ public interface ServiceComponent {
     DeleteAppActivity provideDeleteAppActivity();
     GetUserAppsActivity provideGetUserAppsActivity();
     GetAppDetailsActivity provideGetAppDetailsActivity();
-    CheckAppStatusActivity provideCheckAppStatusActivity();
+    CheckAppStatusEvent provideCheckAppStatusEvent();
 }

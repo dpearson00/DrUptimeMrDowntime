@@ -71,4 +71,16 @@ public class Application {
     public void setServerHistoryId(String serverHistoryId) {
         this.serverHistoryId = serverHistoryId;
     }
+
+    @Override
+    public String toString() {
+        return "Application{" +
+                "appId='" + appId + '\'' +
+                ", appName='" + appName + '\'' +
+                ", description='" + description + '\'' +
+                ", appUrl='" + appUrl + '\'' +
+                ", userId='" + userId + '\'' +
+                ", serverHistoryId='" + serverHistoryId + '\'' +
+                '}';
+    }
 }

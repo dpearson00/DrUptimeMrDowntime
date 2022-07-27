@@ -59,9 +59,7 @@ public class ApplicationDao {
 
     public List<Application> getAllApplication() {
         DynamoDBScanExpression scanExpression = new DynamoDBScanExpression();
-        List<Application> list = dynamoDBMapper.scan(Application.class, scanExpression);
-        System.out.println(list);
-        return list;
+        return dynamoDBMapper.scan(Application.class, scanExpression);
     }
 
 

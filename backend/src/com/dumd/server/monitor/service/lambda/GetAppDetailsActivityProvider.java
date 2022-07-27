@@ -15,7 +15,7 @@ public class GetAppDetailsActivityProvider implements RequestHandler<GetAppDetai
 
     @Override
     public GetAppDetailsResult handleRequest(GetAppDetailsRequest input, Context context) {
-        return null;
+        return getServiceComponent().provideGetAppDetailsActivity().handleRequest(input, context);
     }
 
     private ServiceComponent getServiceComponent() {

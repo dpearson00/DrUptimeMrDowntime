@@ -2,6 +2,7 @@ package com.dumd.server.monitor.service.dynamodb.daos;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.dumd.server.monitor.service.dynamodb.models.ServerHistory;
 import com.dumd.server.monitor.service.exceptions.ServerHistoryNotFoundException;
+import org.apache.logging.log4j.core.jmx.Server;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -45,8 +46,13 @@ public class ServerHistoryDao {
      *
      * @param serverHistory a ServerHistory object
      */
-    public void saveServerHistory(ServerHistory serverHistory) {
+    public ServerHistory saveServerHistory(ServerHistory serverHistory) {
         dynamoDBMapper.save(serverHistory);
-        // TODO: Time permitting, put in logic that makes sure info was saved in DB
+        return serverHistory;
+
+    }
+
+    public void deleteServerHistory(ServerHistory serverHistory) {
+        dynamoDBMapper.delete(serverHistory);
     }
 }

@@ -3,8 +3,10 @@ package com.dumd.server.monitor.service.activity;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.dumd.server.monitor.service.dynamodb.daos.ApplicationDao;
+import com.dumd.server.monitor.service.dynamodb.daos.ServerHistoryDao;
 import com.dumd.server.monitor.service.dynamodb.daos.UserDao;
 import com.dumd.server.monitor.service.dynamodb.models.Application;
+import com.dumd.server.monitor.service.dynamodb.models.ServerHistory;
 import com.dumd.server.monitor.service.dynamodb.models.User;
 import com.dumd.server.monitor.service.exceptions.InvalidRequestException;
 import com.dumd.server.monitor.service.models.requests.DeleteAppRequest;
@@ -27,17 +29,20 @@ public class DeleteAppActivity implements RequestHandler<DeleteAppRequest, Delet
     private final Logger log = LogManager.getLogger();
     private final UserDao userDao;
     private final ApplicationDao applicationDao;
+    private final ServerHistoryDao serverHistoryDao;
 
     /**
      *  Instantiates a new DeleteAppActivity object
      *
      * @param userDao UserDao to access the users table
      * @param applicationDao ApplicationDao to access the application table
+     * @param serverHistoryDao ServerHistoryDao to access the serverHistory table
      */
     @Inject
-    public DeleteAppActivity(UserDao userDao, ApplicationDao applicationDao) {
+    public DeleteAppActivity(UserDao userDao, ApplicationDao applicationDao, ServerHistoryDao serverHistoryDao) {
         this.userDao = userDao;
         this.applicationDao = applicationDao;
+        this.serverHistoryDao = serverHistoryDao;
     }
 
     /**
@@ -72,7 +77,10 @@ public class DeleteAppActivity implements RequestHandler<DeleteAppRequest, Delet
                             ,deleteAppRequest.getAppId(), app.getAppId()));
         }
 
+        ServerHistory sh = serverHistoryDao.getServerHistory(app.getServerHistoryId());
+
         applicationDao.deleteApplication(app);
+        serverHistoryDao.deleteServerHistory(sh);
 
         User user = userDao.getUser(app.getUserId());
         user.getAppIds().remove(deleteAppRequest.getAppId());

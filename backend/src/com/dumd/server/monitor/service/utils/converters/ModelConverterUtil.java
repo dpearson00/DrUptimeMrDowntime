@@ -29,7 +29,7 @@ public class ModelConverterUtil {
                 .withAppUrl(application.getAppUrl())
                 .withUserId(application.getUserId())
                 .withDescription(application.getDescription())
-                .withServerHistoryId(application.getServerHistoryIds())
+                .withServerHistoryId(application.getServerHistoryId())
                 .build();
     }
 

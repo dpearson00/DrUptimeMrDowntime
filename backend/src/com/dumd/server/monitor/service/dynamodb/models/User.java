@@ -40,7 +40,7 @@ public class User {
         this.customerName = customerName;
     }
 
-    @DynamoDBIndexHashKey(attributeName = "email")
+    @DynamoDBIndexHashKey(attributeName = "email", globalSecondaryIndexName = USER_BY_EMAIL_INDEX)
     public String getEmail() {
         return email;
     }

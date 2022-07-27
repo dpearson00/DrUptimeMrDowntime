@@ -107,7 +107,7 @@ String name;
 String description;  
 String appUrl; // or IP address  
 String userId;  
-List<String> serverHistoryId  
+String serverHistoryId  
 
 // ServerHistoryModel
 
@@ -193,7 +193,7 @@ appName // string
 description // string  
 appUrl // string  
 userId // string  
-serverHistoryIds // list  
+serverHistoryId // string  
 
 # 7.3 `serverHistory`
 

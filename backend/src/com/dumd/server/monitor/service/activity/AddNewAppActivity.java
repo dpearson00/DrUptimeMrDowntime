@@ -3,8 +3,10 @@ package com.dumd.server.monitor.service.activity;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.dumd.server.monitor.service.dynamodb.daos.ApplicationDao;
+import com.dumd.server.monitor.service.dynamodb.daos.ServerHistoryDao;
 import com.dumd.server.monitor.service.dynamodb.daos.UserDao;
 import com.dumd.server.monitor.service.dynamodb.models.Application;
+import com.dumd.server.monitor.service.dynamodb.models.ServerHistory;
 import com.dumd.server.monitor.service.dynamodb.models.User;
 import com.dumd.server.monitor.service.models.requests.AddNewAppRequest;
 import com.dumd.server.monitor.service.models.results.AddNewAppResult;
@@ -14,6 +16,7 @@ import com.dumd.server.monitor.service.models.utils.StatusMessage;
 import com.dumd.server.monitor.service.utils.converters.ModelConverterUtil;
 
 import javax.inject.Inject;
+import java.util.HashMap;
 import java.util.UUID;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -27,17 +30,20 @@ public class AddNewAppActivity implements RequestHandler<AddNewAppRequest, AddNe
     private final Logger log = LogManager.getLogger();
     private final UserDao userDao;
     private final ApplicationDao applicationDao;
+    private final ServerHistoryDao serverHistoryDao;
 
     /**
      *  Instantiates a new AddNewAppActivity object
      *
      * @param userDao UserDao to access the users table
-     * @param applicationDao ApplicationDao to access the applications table;
+     * @param applicationDao ApplicationDao to access the applications table
+     * @param serverHistoryDao ServerHistoryDao to access the serverHistory table
      */
     @Inject
-    public AddNewAppActivity(UserDao userDao, ApplicationDao applicationDao) {
+    public AddNewAppActivity(UserDao userDao, ApplicationDao applicationDao, ServerHistoryDao serverHistoryDao) {
         this.userDao = userDao;
         this.applicationDao = applicationDao;
+        this.serverHistoryDao = serverHistoryDao;
     }
 
     /**
@@ -55,14 +61,21 @@ public class AddNewAppActivity implements RequestHandler<AddNewAppRequest, AddNe
 
         Application application = new Application();
         String appId = String.valueOf(UUID.randomUUID());
+        String serverHistoryId = String.valueOf(UUID.randomUUID());
         application.setAppId(appId);
         application.setAppName(addNewAppRequest.getAppName());
         application.setAppUrl(addNewAppRequest.getUrl());
         application.setDescription(addNewAppRequest.getAppDescription());
-        application.setServerHistoryIds(null);
+        application.setServerHistoryId(serverHistoryId);
         application.setUserId(addNewAppRequest.getUserId());
 
+        ServerHistory sh = new ServerHistory();
+        sh.setAppId(appId);
+        sh.setServerHistoryId(serverHistoryId);
+        sh.setErrorLogs(new HashMap<>());
+
         applicationDao.saveApplication(application);
+        serverHistoryDao.saveServerHistory(sh);
 
         User user = userDao.getUser(addNewAppRequest.getUserId());
         user.getAppIds().add(appId);

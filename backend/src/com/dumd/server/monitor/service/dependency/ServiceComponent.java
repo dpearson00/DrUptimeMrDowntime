@@ -14,4 +14,5 @@ public interface ServiceComponent {
     DeleteAppActivity provideDeleteAppActivity();
     GetUserAppsActivity provideGetUserAppsActivity();
     GetAppDetailsActivity provideGetAppDetailsActivity();
+    CheckAppStatusActivity provideCheckAppStatusActivity();
 }

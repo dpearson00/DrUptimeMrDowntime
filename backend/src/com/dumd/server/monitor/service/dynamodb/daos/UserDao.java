@@ -3,11 +3,13 @@ package com.dumd.server.monitor.service.dynamodb.daos;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.dumd.server.monitor.service.dynamodb.models.User;
+import com.dumd.server.monitor.service.exceptions.InvalidRequestException;
 import com.dumd.server.monitor.service.exceptions.UserNotFoundException;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *  Accesses data for a user using {@link User} to represent the model in DynamoDB.
@@ -52,6 +54,20 @@ public class UserDao {
                 .withIndexName(User.USER_BY_EMAIL_INDEX);
 
         return new ArrayList<>(dynamoDBMapper.query(User.class, queryExpression)).get(0);
+    }
+
+    /**
+     * Check if a user already exists with given email address
+     * @param email Email address to check in database
+     * @return True if email already exist, False if it does not;
+     */
+    public boolean doesUserExist(String email) {
+        try {
+            getUserByEmail(email);
+        } catch (IndexOutOfBoundsException e) {
+            return false;
+        }
+        return true;
     }
 
     /**

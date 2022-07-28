@@ -32,3 +32,6 @@ atlassian-ide-plugin.xml
 
 .vscode
 **/.vscode
+
+# Test java class
+**/Runner.java

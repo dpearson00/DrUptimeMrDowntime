@@ -1,11 +1,13 @@
 package com.dumd.server.monitor.service.dynamodb.daos;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
 import com.dumd.server.monitor.service.dynamodb.models.Application;
 import com.dumd.server.monitor.service.exceptions.ApplicationNotFoundException;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import java.util.List;
 
 /**
  *  Accesses data for an application user {@link Application} to represent the model in DynamoDB
@@ -54,4 +56,11 @@ public class ApplicationDao {
         dynamoDBMapper.delete(application);
         return application;
     }
+
+    public List<Application> getAllApplication() {
+        DynamoDBScanExpression scanExpression = new DynamoDBScanExpression();
+        return dynamoDBMapper.scan(Application.class, scanExpression);
+    }
+
+
 }

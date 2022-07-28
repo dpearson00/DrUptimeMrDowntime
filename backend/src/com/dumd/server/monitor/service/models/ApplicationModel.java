@@ -11,7 +11,7 @@ public class ApplicationModel {
     private String description;
     private String appUrl;              // or IP address
     private String userId;
-    private List<String> serverHistoryId;
+    private String serverHistoryId;
 
     public ApplicationModel() {
 
@@ -66,11 +66,11 @@ public class ApplicationModel {
         this.userId = userId;
     }
 
-    public List<String> getServerHistoryId() {
+    public String getServerHistoryId() {
         return serverHistoryId;
     }
 
-    public void setServerHistoryId(List<String> serverHistoryId) {
+    public void setServerHistoryId(String serverHistoryId) {
         this.serverHistoryId = serverHistoryId;
     }
 
@@ -107,7 +107,7 @@ public class ApplicationModel {
         private String description;
         private String appUrl;
         private String userId;
-        private List<String> serverHistoryId;
+        private String serverHistoryId;
 
         public Builder withAppId(String appIdToUse) {
             this.appId = appIdToUse;
@@ -134,7 +134,7 @@ public class ApplicationModel {
             return this;
         }
 
-        public Builder withServerHistoryId(List<String> serverHistoryIdToUse) {
+        public Builder withServerHistoryId(String serverHistoryIdToUse) {
             this.serverHistoryId = serverHistoryIdToUse;
             return this;
         }

@@ -16,7 +16,7 @@ public class Application {
     private String description;
     private String appUrl;
     private String userId;
-    private List<String> serverHistoryIds;
+    private String serverHistoryId;
 
     @DynamoDBHashKey(attributeName = "appId")
     public String getAppId() {
@@ -63,12 +63,24 @@ public class Application {
         this.userId = userId;
     }
 
-    @DynamoDBAttribute(attributeName = "serverHistoryIds")
-    public List<String> getServerHistoryIds() {
-        return serverHistoryIds;
+    @DynamoDBAttribute(attributeName = "serverHistoryId")
+    public String getServerHistoryId() {
+        return serverHistoryId;
     }
 
-    public void setServerHistoryIds(List<String> serverHistoryIds) {
-        this.serverHistoryIds = serverHistoryIds;
+    public void setServerHistoryId(String serverHistoryId) {
+        this.serverHistoryId = serverHistoryId;
+    }
+
+    @Override
+    public String toString() {
+        return "Application{" +
+                "appId='" + appId + '\'' +
+                ", appName='" + appName + '\'' +
+                ", description='" + description + '\'' +
+                ", appUrl='" + appUrl + '\'' +
+                ", userId='" + userId + '\'' +
+                ", serverHistoryId='" + serverHistoryId + '\'' +
+                '}';
     }
 }

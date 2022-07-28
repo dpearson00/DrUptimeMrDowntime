@@ -65,6 +65,11 @@ public class LoginUserActivity implements RequestHandler<LoginUserRequest, Login
             throw new InvalidRequestException("No password present. Please enter valid password.");
         }
 
+        boolean existingUser = userDao.doesUserExist(loginUserRequest.getEmail());
+        if (!existingUser) {
+            throw new InvalidRequestException("No account with this email exists, please enter valid email.");
+        }
+
         User user = userDao.getUserByEmail(loginUserRequest.getEmail());
         boolean success;
         try {

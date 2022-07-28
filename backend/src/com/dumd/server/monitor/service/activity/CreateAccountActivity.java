@@ -16,6 +16,7 @@ import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.UUID;
 
 /**
@@ -58,6 +59,12 @@ public class CreateAccountActivity implements RequestHandler<CreateAccountReques
             throw new InvalidRequestException("No password present. Please enter valid password.");
         }
 
+        boolean existingUser = userDao.doesUserExist(createAccountRequest.getEmail());
+        if (existingUser) {
+            throw new InvalidRequestException("Account already exists with that email address.");
+        }
+
+
         // TODO: Consider storing in hashedPassword and salt in original format instead of converting to hex
         byte[] salt = HashingUtil.createSalt();
         String saltHex = HashingUtil.bytesToHex(salt);
@@ -76,7 +83,7 @@ public class CreateAccountActivity implements RequestHandler<CreateAccountReques
         user.setSalt(saltHex);
         user.setUserId(String.valueOf(UUID.randomUUID()));
         user.setPhoneNumber(null);
-        user.setAppIds(null);
+        user.setAppIds(new ArrayList<>());
 
         /*
         TODO: Add the ability to verify a user's email. This would entail sending an email

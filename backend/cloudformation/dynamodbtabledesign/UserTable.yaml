@@ -11,7 +11,7 @@ Resources:
         - AttributeName: "userId"
           KeyType: "HASH"
       GlobalSecondaryIndexes:
-        - IndexName: "email"
+        - IndexName: "UserByEmailIndex"
           KeySchema:
             - AttributeName: "email"
               KeyType: "HASH"

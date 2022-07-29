@@ -19,6 +19,8 @@ import com.dumd.server.monitor.service.utils.converters.ModelConverterUtil;
 import javax.inject.Inject;
 import java.util.HashMap;
 import java.util.UUID;
+
+import com.dumd.server.monitor.service.utils.validation.ValidatorUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -60,12 +62,18 @@ public class AddNewAppActivity implements RequestHandler<AddNewAppRequest, AddNe
     public AddNewAppResult handleRequest(final AddNewAppRequest addNewAppRequest, Context context) {
         log.info("Received AddNewAppsRequest {}", addNewAppRequest);
 
+        String appUrl = addNewAppRequest.getUrl();
+        if (!ValidatorUtil.validateURL(appUrl)) {
+            throw new InvalidRequestException(String.format("Url: %s is not a valid url. " +
+                    "Please make sure to include http:// or https://"));
+        }
+
         Application application = new Application();
         String appId = String.valueOf(UUID.randomUUID());
         String serverHistoryId = String.valueOf(UUID.randomUUID());
         application.setAppId(appId);
         application.setAppName(addNewAppRequest.getAppName());
-        application.setAppUrl(addNewAppRequest.getUrl());
+        application.setAppUrl(appUrl);
         application.setDescription(addNewAppRequest.getAppDescription());
         application.setServerHistoryId(serverHistoryId);
         application.setUserId(addNewAppRequest.getUserId());

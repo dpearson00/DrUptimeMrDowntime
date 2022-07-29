@@ -13,11 +13,12 @@ const newapp = (req, res) => {
 const postnewapp = (req, res) => {
   axios
     .post(`${__apiLink}/apps/${req.session.userId}/create`, {
-      name: req.body.name,
+      name: req.body.title,
       description: req.body.description,
       url: req.body.url,
     })
     .then(function (response) {
+      console.log(response.data);
       if (response.data[1] == "SUCCESS") {
           res.redirect("/dash");
         } else {

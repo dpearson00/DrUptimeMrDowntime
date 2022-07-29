@@ -10,14 +10,14 @@ const newAppRoute = require(`${__scriptsDir}/routes/newapp`);
 
 const updateApiLimit = rateLimit({
   windowMs: 1 * 60 * 1000,
-  max: 1,
+  max: 100,
   standardHeaders: true,
   legacyHeaders: false,
   message: "This IP has already sent a response in the past minute!",
 });
 const getPageLimit = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 30,
+  max: 100,
   standardHeaders: true,
   legacyHeaders: false,
   message:

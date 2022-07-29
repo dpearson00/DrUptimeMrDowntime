@@ -17,7 +17,7 @@ var session = require("express-session");
 const initRoutes = require("./scripts/router");
 
 app.use(
-  session({ resave: false, saveUninitialized: false, secret: "superfuntest", cookie: { maxAge: 60000, secure: false } })
+  session({ resave: false, saveUninitialized: false, secret: "superfuntest", cookie: { maxAge: 3600000, secure: false } })
 ); // Configure Express to use sessions, used for tracking user logins
 app.use(express.urlencoded({ extended: true }));
 app.use("/static", express.static(path.join(__dirname, "views/static"))); // Create static route (for stylesheets and assets)

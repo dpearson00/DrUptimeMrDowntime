@@ -10,8 +10,9 @@ const view = (req, res) => {
       console.log(response.data);
       if (res.statusCode === 200) {
         res.render("view.ejs", {
-          name: response.data[1],
-          desc: response.data[2],
+          name: response.data.application.name,
+          url: response.data.application.appUrl,
+          id: response.data.application.appId,
         });
       } else {
         res.render("info.ejs", {

@@ -18,7 +18,7 @@ const postnewuser = (req, res) => {
       email: req.body.email,
     })
     .then(function (response) {
-      if (response.data[1] == "SUCCESS") {
+      if (response.status == 200) {
         req.session.regenerate(function () {
           // TODO: populate with userId
           req.session.userId = req.body.username;

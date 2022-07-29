@@ -18,12 +18,12 @@ const auth = (req, res) => {
       password: req.body.password,
     })
     .then(function (response) {
-      if (response.data[1] == "SUCCESS") {
+      if (response.status == 200) {
         req.session.regenerate(function () {
 
           // TODO: user should use token and name should be the name of the person they are logged in as!
-          req.session.userId = req.body.email;
-          req.session.name = req.body.email;
+          req.session.userId = response.data.user.userId;
+          req.session.name = response.data.user.email;
           req.session.success =
             "Successfully authenticated as " + req.session.name;
           res.redirect("/dash");

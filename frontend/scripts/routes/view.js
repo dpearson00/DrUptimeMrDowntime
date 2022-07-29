@@ -7,6 +7,7 @@ const view = (req, res) => {
   axios
     .get(`${__apiLink}/apps/${req.session.userId}/view/${req.params.id}`)
     .then(function (response) {
+      console.log(response.data);
       if (res.statusCode === 200) {
         res.render("view.ejs", {
           name: response.data[1],

@@ -4,12 +4,19 @@ const { json } = require("express");
   Dashboard route
 */
 const dash = (req, res) => {
-  // This is using the mock API which starts alongside the main server when configured to via .env
   axios
     .get(`${__apiLink}/users/${req.session.userId}/apps`)
     .then(function (response) {
-      var name = JSON.parse(JSON.stringify(response.data[1]));
-      var ids = JSON.parse(JSON.stringify(response.data[2]));
+      console.log(response.data);
+      if (response.data.appNames.length == 0) {
+        res.render("dash.ejs", {
+          welcome: `Welcome to your dashboard!`,
+          desc: `You have not created any applications yet!\n<a href="/dash/newapp"><button class="button">Enroll Application</button></a>`,
+          bundles: [],
+        });
+      }
+      var name = JSON.parse(JSON.stringify(response.data.appNames));
+      var ids = JSON.parse(JSON.stringify(response.data.appIds));
 
       var count = Object.keys(ids).length;
 
@@ -21,6 +28,7 @@ const dash = (req, res) => {
 
       res.render("dash.ejs", {
         welcome: `Welcome, ` + req.session.name + `!`,
+        desc: `Services you monitor are below!`,
         bundles: bundles,
       });
     })

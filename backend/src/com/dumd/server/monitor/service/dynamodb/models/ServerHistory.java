@@ -4,7 +4,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
-import java.util.Map;
+import java.util.List;
 
 /**
  *  Represents a record in the serverHistory table.
@@ -13,7 +13,7 @@ import java.util.Map;
 public class ServerHistory {
     private String serverHistoryId;
     private String appId;
-    private Map<String, String> errorLogs;
+    private List<List<String>> errorLogs;
 
     @DynamoDBHashKey(attributeName = "serverHistoryId")
     public String getServerHistoryId() {
@@ -34,11 +34,11 @@ public class ServerHistory {
     }
 
     @DynamoDBAttribute(attributeName = "errorLogs")
-    public Map<String, String> getErrorLogs() {
+    public List<List<String>> getErrorLogs() {
         return errorLogs;
     }
 
-    public void setErrorLogs(Map<String, String> errorLogs) {
+    public void setErrorLogs(List<List<String>> errorLogs) {
         this.errorLogs = errorLogs;
     }
 }

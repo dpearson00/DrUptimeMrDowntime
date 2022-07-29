@@ -3,8 +3,10 @@ package com.dumd.server.monitor.service.activity;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.dumd.server.monitor.service.dynamodb.daos.ApplicationDao;
+import com.dumd.server.monitor.service.dynamodb.daos.ServerHistoryDao;
 import com.dumd.server.monitor.service.dynamodb.daos.UserDao;
 import com.dumd.server.monitor.service.dynamodb.models.Application;
+import com.dumd.server.monitor.service.dynamodb.models.ServerHistory;
 import com.dumd.server.monitor.service.exceptions.InvalidRequestException;
 import com.dumd.server.monitor.service.exceptions.UserNotFoundException;
 import com.dumd.server.monitor.service.models.requests.GetAppDetailsRequest;
@@ -17,6 +19,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  *  Implementation of the GetAppDetailsActivity for the DUMDServerMonitorService GetAppDetails API.
@@ -27,6 +32,7 @@ public class GetAppDetailsActivity implements RequestHandler<GetAppDetailsReques
     private final Logger log = LogManager.getLogger();
     private final UserDao userDao;
     private final ApplicationDao applicationDao;
+    private final ServerHistoryDao serverHistoryDao;
 
     /**
      *  Instantiates a new GetAppDetailsActivity object
@@ -35,9 +41,10 @@ public class GetAppDetailsActivity implements RequestHandler<GetAppDetailsReques
      * @param applicationDao ApplicationDao to access the applications table
      */
     @Inject
-    public GetAppDetailsActivity(UserDao userDao, ApplicationDao applicationDao) {
+    public GetAppDetailsActivity(UserDao userDao, ApplicationDao applicationDao, ServerHistoryDao serverHistoryDao) {
         this.userDao = userDao;
         this.applicationDao = applicationDao;
+        this.serverHistoryDao = serverHistoryDao;
     }
 
     /**
@@ -58,11 +65,13 @@ public class GetAppDetailsActivity implements RequestHandler<GetAppDetailsReques
         }
 
         Application app = applicationDao.getApplication(getAppDetailsRequest.getAppId());
+        ServerHistory sh = serverHistoryDao.getServerHistory(app.getServerHistoryId());
 
 
         return GetAppDetailsResult.builder()
                 .withStatus(new Status(StatusMessage.SUCCESS, "200"))
                 .withApplication(ModelConverterUtil.toApplicationModel(app))
+                .withErrorLogs(sh.getErrorLogs())
                 .build();
     }
 }

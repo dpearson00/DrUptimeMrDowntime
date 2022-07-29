@@ -67,14 +67,19 @@ public class GetUserAppsActivity implements RequestHandler<GetUserAppsRequest, G
         }
 
         List<Application> applications = new ArrayList<>();
+        List<String> appNames = new ArrayList<>();
+        List<String> appIds = new ArrayList<>();
 
         for (String appId : user.getAppIds()) {
-            applications.add(applicationDao.getApplication(appId));
+            Application app = applicationDao.getApplication(appId);
+            appNames.add(app.getAppName());
+            appIds.add(app.getAppId());
         }
 
         return GetUserAppsResult.builder()
                 .withStatus(new Status(StatusMessage.SUCCESS, "200"))
-                .withApplications(ModelConverterUtil.toApplicationModelList(applications))
+                .withAppNames(appNames)
+                .withAppIds(appIds)
                 .build();
     }
 

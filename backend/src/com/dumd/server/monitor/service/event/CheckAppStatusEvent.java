@@ -14,6 +14,7 @@ import org.apache.logging.log4j.Logger;
 import javax.inject.Inject;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -74,9 +75,12 @@ public class CheckAppStatusEvent {
             }
             // Save that status in the serverHistory database with a timestamp as the key
             ServerHistory sh = serverHistoryDao.getServerHistory(app.getServerHistoryId());
-            Map<String, String> statusLog = sh.getErrorLogs();
-            statusLog.put(new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new Date()).toString(),
-                    String.valueOf(responseCode));
+            List<List<String>> statusLogs = sh.getErrorLogs();
+            List<String> statusLog = new ArrayList<>();
+            statusLog.add(new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new Date()).toString());
+            statusLog.add(String.valueOf(responseCode));
+            statusLogs.add(statusLog);
+            sh.setErrorLogs(statusLogs);
             serverHistoryDao.saveServerHistory(sh);
 
         }

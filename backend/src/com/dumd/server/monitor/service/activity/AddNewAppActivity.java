@@ -17,6 +17,7 @@ import com.dumd.server.monitor.service.models.utils.StatusMessage;
 import com.dumd.server.monitor.service.utils.converters.ModelConverterUtil;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -81,7 +82,7 @@ public class AddNewAppActivity implements RequestHandler<AddNewAppRequest, AddNe
         ServerHistory sh = new ServerHistory();
         sh.setAppId(appId);
         sh.setServerHistoryId(serverHistoryId);
-        sh.setErrorLogs(new HashMap<>());
+        sh.setErrorLogs(new ArrayList<>());
 
         applicationDao.saveApplication(application);
         serverHistoryDao.saveServerHistory(sh);

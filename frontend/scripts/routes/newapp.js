@@ -19,15 +19,8 @@ const postnewapp = (req, res) => {
     })
     .then(function (response) {
       if (response.data[1] == "SUCCESS") {
-        req.session.regenerate(function () {
-          req.session.id = req.body.username;
-          req.session.success =
-            "Successfully created and logged in as " + req.session.name;
           res.redirect("/dash");
-        });
-      } else {
-        req.session.error =
-          "Account creation failed, please provide valid user details.";
+        } else {
         res.render("info.ejs", {
           title: `Failure!`,
           desc: `An error occurred! Please contact the site administrator!`,

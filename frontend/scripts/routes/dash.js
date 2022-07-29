@@ -8,6 +8,13 @@ const dash = (req, res) => {
   axios
     .get(`${__apiLink}/users/${req.session.userId}/apps`)
     .then(function (response) {
+      if (response.data.applications.length == 0) {
+        res.render("dash.ejs", {
+          welcome: `Welcome to your dashboard!`,
+          desc: `You have not created any applications yet!\n<a href="localhost:8080/dash/newapp"><button class="button">Enroll Application</button></a>`,
+          bundles: [],
+        });
+      }
       var name = JSON.parse(JSON.stringify(response.data[1]));
       var ids = JSON.parse(JSON.stringify(response.data[2]));
 
@@ -21,6 +28,7 @@ const dash = (req, res) => {
 
       res.render("dash.ejs", {
         welcome: `Welcome, ` + req.session.name + `!`,
+        desc: `Services you monitor are below!`,
         bundles: bundles,
       });
     })

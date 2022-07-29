@@ -48,13 +48,14 @@ public class CheckAppStatusEvent {
      * @param context
      * @return
      */
-    public void handleRequest(Map<String, String> input, Context context) {
+    public void handleRequest(Object input, Context context) {
         log.info("Received event input {}", input);
 
         // Get a list of all the applications in the applications table
         List<Application> apps = applicationDao.getAllApplication();
 
         // For each application make a request to the server
+        // TODO: add a timeout in case there is no connection to the website
         for (Application app : apps) {
             int responseCode;
             try {

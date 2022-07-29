@@ -21,10 +21,28 @@
       <div class="jumbotron">
         <p align="center">
         </p>
-        <h1 align="center"><%= name %> </h1>
+        <h1 align="center"><%= name %></h1>
         <div align="center">
+          <br>
+          <a href="<%= url %>"><h4><%= url %></h4></a>
+          <h5><i><%= id %></i></h5>
           <hr>
-          <h4><%= desc %> </h4>
+          <h2>Incidents:</h2>
+          <br>
+          <% for (issue of issues) { %>
+              <button class="redButton">
+                <h3><%= issue %></h3>
+              </button>
+          <% } %>
+          <br><br>
+          <h2>No Problems:</h2>
+          <br>
+          <% for (ok of oks) { %>
+            <button class="greenButton">
+              <h3><%= ok %></h3>
+            </button>
+        <% } %>
+          <br>
         </div>
         <div class="jumbotron"></div>
         <p class="text-center text-muted">
@@ -38,6 +56,32 @@
     </body>
     <!-- Due to how this page is loaded, the stylesheet is not applied unless it's taken from here. -->
     <style>
+      .redButton {
+          background-color: #9f0000;
+          border: none;
+          color: white;
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin: 4px 2px;
+          cursor: pointer;
+        }
+
+      .greenButton {
+        background-color: #007d19;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+
       .titlebar {
         overflow: hidden;
         background-color: #333;

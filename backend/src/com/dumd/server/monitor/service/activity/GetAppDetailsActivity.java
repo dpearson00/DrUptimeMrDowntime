@@ -59,6 +59,7 @@ public class GetAppDetailsActivity implements RequestHandler<GetAppDetailsReques
 
         Application app = applicationDao.getApplication(getAppDetailsRequest.getAppId());
 
+
         return GetAppDetailsResult.builder()
                 .withStatus(new Status(StatusMessage.SUCCESS, "200"))
                 .withApplication(ModelConverterUtil.toApplicationModel(app))

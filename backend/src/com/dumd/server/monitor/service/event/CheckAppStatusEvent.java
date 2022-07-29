@@ -48,24 +48,28 @@ public class CheckAppStatusEvent {
      * @param context
      * @return
      */
-    public void handleRequest(Map<String, String> input, Context context) {
+    public void handleRequest(Object input, Context context) {
         log.info("Received event input {}", input);
 
         // Get a list of all the applications in the applications table
         List<Application> apps = applicationDao.getAllApplication();
 
         // For each application make a request to the server
+        // TODO: add a timeout in case there is no connection to the website
         for (Application app : apps) {
             int responseCode;
-            try {
-                responseCode = HTTPRequest.checkStatus(app.getAppUrl());
-            } catch (IOException e) {
-                throw new ApplicationConnectionException("There was an error trying to connect with " + app);
+            responseCode = HTTPRequest.checkStatus(app.getAppUrl());
+
+            // if an IOException is thrown, a warning will be logged but the loop will keep running.
+            if (responseCode == -2) {
+                log.warn("There was an error trying to connect with " + app);
+                continue;
             }
 
             // Once the request comes back, determine the status
             if (responseCode >= 400 && responseCode < 500) {
-                throw new ClientErrorException("When trying to connect to " + app.getAppUrl() + " there was a " +
+                // If there is a client error (400-499) a warning will be logged and the loop will continue.
+                log.warn("When trying to connect to " + app.getAppUrl() + " there was a " +
                         "client error");
             }
             // Save that status in the serverHistory database with a timestamp as the key

@@ -10,7 +10,7 @@ public class CheckAppStatusEventProvider {
 
     public CheckAppStatusEventProvider(){}
 
-    public void handleRequest(Map<String, String> input, Context context) {
+    public void handleRequest(Object input, Context context) {
         getServiceComponent().provideCheckAppStatusEvent().handleRequest(input, context);
     }
 

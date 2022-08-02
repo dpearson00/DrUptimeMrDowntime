@@ -16,6 +16,8 @@ const path = require("path");
 var session = require("express-session");
 const initRoutes = require("./scripts/router");
 
+// Serve /apidocs if .env enables it
+if (process.env.serveDocs == "true") { const swaggerUi = require('swagger-ui-express'); swaggerDocument = require("./swagger.json"); app.use('/apidocs', swaggerUi.serve, swaggerUi.setup(swaggerDocument)); console.log(`API Docs are being served: ${__serverUrl}/apidocs`); }
 app.use(
   session({ resave: false, saveUninitialized: false, secret: "superfuntest", cookie: { maxAge: 3600000, secure: false } })
 ); // Configure Express to use sessions, used for tracking user logins

@@ -7,14 +7,20 @@
 </p>
   <p align="center">
     <br />
-    <a href="https://github.com/BloomTechBackend/DrUptimeAndMrDowntime/blob/main/project_documents/phases.md">
+    <a href="https://github.com/BloomTechBackend/DrUptimeAndMrDowntime/blob/main/documents/phases.md">
       <img alt="PHASES DOCUMENT" src="https://img.shields.io/badge/DOCUMENT-Phases-green?style=for-the-badge" />
     </a>
-    <a href="https://github.com/BloomTechBackend/DrUptimeAndMrDowntime/blob/main/project_documents/design_document.md">
+    <a href="https://github.com/BloomTechBackend/DrUptimeAndMrDowntime/blob/main/documents/design_document.md">
       <img alt="DESIGN DOCUMENT" src="https://img.shields.io/badge/DOCUMENT-Design-yellow?style=for-the-badge" />
     </a>
-    <a href="https://github.com/BloomTechBackend/DrUptimeAndMrDowntime/blob/main/project_documents/team_charter.md">
-      <img alt="TEAM CHARTER" src="https://img.shields.io/badge/DOCUMENT-Team%20Charter-yellow?style=for-the-badge" />
+    <a href="https://github.com/BloomTechBackend/DrUptimeAndMrDowntime/blob/main/documents/team_charter.md">
+      <img alt="TEAM CHARTER" src="https://img.shields.io/badge/DOCUMENT-Team%20Charter-red?style=for-the-badge" />
+    </a>
+    <a href="https://everybodylikes.me">
+      <img alt="WEBSITE" src="https://img.shields.io/badge/PROJECT-WEBSITE-blue?style=for-the-badge" />
+    </a>
+    <a href="https://everybodylikes.me/apidocs/">
+      <img alt="API Docs" src="https://img.shields.io/badge/API-DOCUMENTATION-lightgrey?style=for-the-badge" />
     </a>
     <br />
     <hr>

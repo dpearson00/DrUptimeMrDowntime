@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BloomTechBackend/DrUptimeAndMrDowntime.git"
+    "url": "git+https://github.com/danielclark00/DrUptimeMrDowntime.git"
   },
   "author": "",
   "license": "AGPL-3.0-only",
   "bugs": {
-    "url": "https://github.com/BloomTechBackend/DrUptimeAndMrDowntime/issues"
+    "url": "https://github.com/danielclark00/DrUptimeMrDowntime/issues"
   },
-  "homepage": "https://github.com/BloomTechBackend/DrUptimeAndMrDowntime#readme",
+  "homepage": "https://github.com/danielclark00/DrUptimeMrDowntime#readme",
   "dependencies": {
     "axios": "^0.27.2",
     "colors": "^1.4.0",

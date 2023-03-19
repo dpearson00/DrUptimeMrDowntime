@@ -2,7 +2,7 @@
   <a><img src="./ICON.png" width="250" height="250" /></a>
 
   <h2 align="center">Dr Uptime & Mr Downtime</h2>
- <p align="center"><i>BloomTech Unit 5 Project</i></p>
+ 
 <h5 align="center">This application aims to allow system administrators the ability to monitor web applications and APIs.</h5>
 </p>
   <p align="center">

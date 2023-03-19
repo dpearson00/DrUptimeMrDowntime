@@ -97,8 +97,7 @@ These resources may be helpful as you fill out your team charter. They are optio
 
 ## Meaning & Impact
 
-**What is personally important for each team member about joining BloomTech? About
-becoming an software engineer?**
+**What is personally important for each team member about becoming an software engineer?**
 
 * *Tommy*: Learn Java and get a career
 * *Daniel*: Self improvement

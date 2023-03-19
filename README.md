@@ -7,13 +7,13 @@
 </p>
   <p align="center">
     <br />
-    <a href="https://github.com/danielclark00/DrUptimeAndMrDowntime/blob/main/documents/phases.md">
+    <a href="https://github.com/danielclark00/DrUptimeMrDowntime/blob/main/documents/phases.md">
       <img alt="PHASES DOCUMENT" src="https://img.shields.io/badge/DOCUMENT-Phases-green?style=for-the-badge" />
     </a>
-    <a href="https://github.com/danielclark00/DrUptimeAndMrDowntime/blob/main/documents/design_document.md">
+    <a href="https://github.com/danielclark00/DrUptimeMrDowntime/blob/main/documents/design_document.md">
       <img alt="DESIGN DOCUMENT" src="https://img.shields.io/badge/DOCUMENT-Design-yellow?style=for-the-badge" />
     </a>
-    <a href="https://github.com/danielclark00/DrUptimeAndMrDowntime/blob/main/documents/team_charter.md">
+    <a href="https://github.com/danielclark00/DrUptimeMrDowntime/blob/main/documents/team_charter.md">
       <img alt="TEAM CHARTER" src="https://img.shields.io/badge/DOCUMENT-Team%20Charter-red?style=for-the-badge" />
     </a>
     <a href="https://everybodylikes.me">
